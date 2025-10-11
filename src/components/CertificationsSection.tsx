@@ -1,57 +1,126 @@
-
 import { Award, ExternalLink, Calendar } from "lucide-react";
+import oracleOci from "@/assets/certificates/oracle-oci-2024.png";
+import awsCcp from "@/assets/certificates/aws-cloud-practitioner.png";
+import pythonBootcamp from "@/assets/certificates/python-bootcamp.png";
+import sapErp from "@/assets/certificates/sap-erp-essential.png";
+import sapBiBw from "@/assets/certificates/sap-bi-bw.png";
+import javascriptEssential from "@/assets/certificates/javascript-essential.png";
+import cssEssential from "@/assets/certificates/css-essential.png";
+import oracleDbSql from "@/assets/certificates/oracle-database-sql.png";
+import htmlEssential from "@/assets/certificates/html-essential.png";
+import careerEssentials from "@/assets/certificates/career-essentials-data-analysis.png";
 
 export const CertificationsSection = () => {
   const certifications = [
     {
       title: "Oracle Cloud Infrastructure 2024 Certified Foundations Associate",
       provider: "Oracle",
-      date: "2024",
+      date: "October 2024",
       status: "Completed",
       description: "Cloud infrastructure fundamentals and Oracle Cloud services",
       skills: ["Oracle Cloud", "Cloud Infrastructure", "Cloud Services"],
-      credentialId: "OCI-2024-CFA",
-      color: "border-red-500"
+      credentialId: "Valid until Oct 05, 2026",
+      color: "border-red-500",
+      certificateImage: oracleOci
     },
     {
-      title: "SAP Certified Associate – Data Analyst & Cloud Analytics",
-      provider: "SAP",
-      date: "2024",
-      status: "Completed",
-      description: "SAP Analytics Cloud expertise for data analysis and visualization",
-      skills: ["SAP Analytics Cloud", "Data Analysis", "Cloud Analytics", "Business Intelligence"],
-      credentialId: "SAP-CA-DAA",
-      color: "border-blue-500"
-    },
-    {
-      title: "AWS Certified Cloud Practitioner",
+      title: "[NEW] Ultimate AWS Certified Cloud Practitioner CLF-C02",
       provider: "Udemy",
-      date: "2024",
+      date: "May 2024",
       status: "Completed",
       description: "AWS Cloud fundamentals and best practices for cloud infrastructure",
       skills: ["AWS", "Cloud Computing", "EC2", "S3", "IAM"],
-      credentialId: "AWS-CCP-Udemy",
-      color: "border-orange-500"
+      credentialId: "UC-874a8f90-3c2f-40e6-ab89-608f8e286dff0",
+      color: "border-orange-500",
+      certificateImage: awsCcp
     },
     {
-      title: "Python Bootcamp",
+      title: "The Complete Python Bootcamp From Zero to Hero in Python",
       provider: "Udemy",
-      date: "2024",
+      date: "March 2023",
       status: "Completed",
       description: "Comprehensive Python programming bootcamp covering fundamentals to advanced concepts",
       skills: ["Python", "Programming", "Data Structures", "Problem Solving"],
-      credentialId: "Udemy Certificate",
-      color: "border-green-500"
+      credentialId: "UC-c7aef7c78-2a23-40a6-abb-5466a70525ed",
+      color: "border-green-500",
+      certificateImage: pythonBootcamp
     },
     {
-      title: "Career Essentials in Data Analysis",
+      title: "Career Essentials in Data Analysis by Microsoft and LinkedIn",
       provider: "Microsoft + LinkedIn",
-      date: "2024",
+      date: "August 2024",
       status: "Completed",
       description: "Essential skills for data analysis and business intelligence careers",
       skills: ["Data Analysis", "Business Intelligence", "Career Development", "Analytics"],
-      credentialId: "Microsoft-LinkedIn",
-      color: "border-purple-500"
+      credentialId: "99f8eabe4 93b58278bf0d590f229d5db 7994b2abd90f9434e5f42efb58b1499c",
+      color: "border-purple-500",
+      certificateImage: careerEssentials
+    },
+    {
+      title: "SAP ERP Essential Training",
+      provider: "LinkedIn Learning",
+      date: "June 2025",
+      status: "Completed",
+      description: "SAP ERP fundamentals and enterprise resource planning",
+      skills: ["SAP ERP", "Enterprise Resource Planning (ERP)"],
+      credentialId: "92fb99e7950bf77dc55c563f3ca8870f05cc70dcfd210fc550f98d6dc9772",
+      color: "border-blue-500",
+      certificateImage: sapErp
+    },
+    {
+      title: "Introduction to SAP BI/BW",
+      provider: "LinkedIn Learning",
+      date: "June 2025",
+      status: "Completed",
+      description: "SAP Business Intelligence and Business Warehouse fundamentals",
+      skills: ["SAP BI", "SAP Business Warehouse (SAP BW)"],
+      credentialId: "b3f0e70e7320338f9a1e1e782d3ec8e953302a354ac08ec4917fa35feb49780bc2",
+      color: "border-cyan-500",
+      certificateImage: sapBiBw
+    },
+    {
+      title: "JavaScript Essential Training (2017)",
+      provider: "LinkedIn Learning",
+      date: "June 2025",
+      status: "Completed",
+      description: "JavaScript fundamentals and essential programming concepts",
+      skills: ["JavaScript"],
+      credentialId: "faa3fk8f:aa7ae92ef24646cb4b42052b7adb78ed19d46efdbdae4c9769540475b",
+      color: "border-yellow-500",
+      certificateImage: javascriptEssential
+    },
+    {
+      title: "CSS Essential Training (2019)",
+      provider: "LinkedIn Learning",
+      date: "June 2025",
+      status: "Completed",
+      description: "Cascading Style Sheets fundamentals and web styling",
+      skills: ["Cascading Style Sheets (CSS)"],
+      credentialId: "bc4a3f9f7bb1575f831bc24c90f7abfe8677dc9e2ce4e23ccfb30fba033c925",
+      color: "border-pink-500",
+      certificateImage: cssEssential
+    },
+    {
+      title: "Oracle Database 19c: Basic SQL",
+      provider: "LinkedIn Learning",
+      date: "February 2025",
+      status: "Completed",
+      description: "Oracle Database SQL fundamentals and query optimization",
+      skills: ["SQL", "Oracle Database"],
+      credentialId: "0ab022d0e9442ce053cfdc65b5000110352fc6edc2d36c1c78e6cca4af5c895c3e",
+      color: "border-red-500",
+      certificateImage: oracleDbSql
+    },
+    {
+      title: "HTML Essential Training (2020)",
+      provider: "LinkedIn Learning",
+      date: "June 2025",
+      status: "Completed",
+      description: "HTML fundamentals and web structure essentials",
+      skills: ["HTML"],
+      credentialId: "ea129cb8bd51fe6c5c8c3e9ff8a796d351320d382efe1c3f3fd097af653fe107",
+      color: "border-indigo-500",
+      certificateImage: htmlEssential
     }
   ];
 
@@ -84,23 +153,17 @@ export const CertificationsSection = () => {
               className={`glass rounded-2xl p-6 hover:scale-105 transition-all duration-300 animate-slide-up border-l-4 ${cert.color}`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="flex items-start justify-between mb-4">
-                <div className="flex items-center gap-3">
+              <div className="mb-4">
+                <div className="flex items-center gap-3 mb-3">
                   <Award className="w-6 h-6 text-orange-500" />
-                  <div>
-                    <h3 className="text-xl font-semibold line-clamp-2">{cert.title}</h3>
-                    <p className="text-sm text-muted-foreground">{cert.provider}</p>
-                  </div>
+                  <h3 className="text-lg font-semibold line-clamp-2">{cert.title}</h3>
                 </div>
-                
-                <div className="text-right">
-                  <div className="flex items-center gap-2 text-sm text-muted-foreground mb-2">
-                    <Calendar className="w-4 h-4" />
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-muted-foreground">{cert.provider}</p>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <Calendar className="w-3 h-3" />
                     {cert.date}
                   </div>
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(cert.status)}`}>
-                    {cert.status}
-                  </span>
                 </div>
               </div>
 
@@ -108,7 +171,7 @@ export const CertificationsSection = () => {
 
               <div className="space-y-3">
                 <div>
-                  <span className="text-sm font-medium mb-2 block">Skills Covered:</span>
+                  <span className="text-xs font-medium mb-2 block text-muted-foreground">Skills Covered:</span>
                   <div className="flex flex-wrap gap-2">
                     {cert.skills.map((skill) => (
                       <span
@@ -121,10 +184,19 @@ export const CertificationsSection = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-2 border-t border-border/20">
-                  <span className="text-xs text-muted-foreground">
+                <div className="pt-3 border-t border-border/20 space-y-2">
+                  <p className="text-xs text-muted-foreground">
                     {cert.credentialId}
-                  </span>
+                  </p>
+                  <a
+                    href={cert.certificateImage}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-medium transition-colors w-full justify-center"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    View Certificate
+                  </a>
                 </div>
               </div>
             </div>

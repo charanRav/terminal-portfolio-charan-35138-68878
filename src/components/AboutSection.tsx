@@ -5,7 +5,7 @@ export const AboutSection = () => {
   const skills = [
     { name: "Java", level: 75, color: "bg-orange-500" },
     { name: "Python", level: 95, color: "bg-blue-500" },
-    { name: "HTML/CSS", level: 100, color: "bg-orange-400" },
+    { name: "HTML/CSS", level: 82, color: "bg-orange-400" },
     { name: "JavaScript", level: 80, color: "bg-yellow-500" }
   ];
 
