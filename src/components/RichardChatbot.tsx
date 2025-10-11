@@ -2,9 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { X, Send, Loader2 } from "lucide-react";
+import { X, Send, Loader2, AlertCircle } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
-import { v4 as uuidv4 } from 'uuid';
+import { useToast } from "@/hooks/use-toast";
 
 interface Message {
   sender: "user" | "bot";
@@ -16,26 +16,17 @@ interface RichardChatbotProps {
   onClose: () => void;
 }
 
+const MESSAGE_LIMIT = 20;
+
 export const RichardChatbot = ({ isOpen, onClose }: RichardChatbotProps) => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [visitorId] = useState(() => {
-    const stored = localStorage.getItem('richard_visitor_id');
-    if (stored) return stored;
-    const newId = uuidv4();
-    localStorage.setItem('richard_visitor_id', newId);
-    return newId;
+  const [messageCount, setMessageCount] = useState(() => {
+    const stored = localStorage.getItem('richard_message_count');
+    return stored ? parseInt(stored, 10) : 0;
   });
-  const [visitorName, setVisitorName] = useState("");
-  const [feedbackState, setFeedbackState] = useState({
-    stage: 0,
-    interactionRating: null as number | null,
-    experienceRating: null as number | null,
-    humorRating: null as number | null,
-    wouldRecommend: null as boolean | null,
-    additionalComments: null as string | null,
-  });
+  const { toast } = useToast();
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -52,11 +43,25 @@ export const RichardChatbot = ({ isOpen, onClose }: RichardChatbotProps) => {
   }, [isOpen]);
 
   useEffect(() => {
+    localStorage.setItem('richard_message_count', messageCount.toString());
+  }, [messageCount]);
+
+  useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   const handleSendMessage = async () => {
     if (!input.trim() || isLoading) return;
+
+    // Check message limit
+    if (messageCount >= MESSAGE_LIMIT) {
+      toast({
+        title: "Message Limit Reached",
+        description: `You've reached the ${MESSAGE_LIMIT} message limit. Richard needs to rest to keep this service free! 😴`,
+        variant: "destructive",
+      });
+      return;
+    }
 
     const userMessage: Message = {
       sender: "user",
@@ -66,6 +71,7 @@ export const RichardChatbot = ({ isOpen, onClose }: RichardChatbotProps) => {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
     setIsLoading(true);
+    setMessageCount(prev => prev + 1);
 
     // Auto-focus input after sending message
     setTimeout(() => {
@@ -73,11 +79,6 @@ export const RichardChatbot = ({ isOpen, onClose }: RichardChatbotProps) => {
     }, 100);
 
     try {
-      // Track visitor name from first response
-      if (messages.length === 1 && !visitorName) {
-        setVisitorName(input.trim());
-      }
-
       // Build conversation history for AI
       const conversationHistory = [...messages, userMessage].map(msg => ({
         role: msg.sender === "user" ? "user" : "assistant",
@@ -90,77 +91,17 @@ export const RichardChatbot = ({ isOpen, onClose }: RichardChatbotProps) => {
 
       if (error) throw error;
 
-      const botReply = data.reply;
-
-      // Check if feedback is complete
-      if (botReply.includes("FEEDBACK_COMPLETE")) {
-        // Submit all feedback
-        const feedbackData = {
-          visitor_id: visitorId,
-          visitor_name: visitorName || "Anonymous",
-          interaction_rating: feedbackState.interactionRating,
-          experience_rating: feedbackState.experienceRating,
-          humor_rating: feedbackState.humorRating,
-          would_recommend: feedbackState.wouldRecommend,
-          additional_comments: feedbackState.additionalComments || "none",
-        };
-
-        await supabase.functions.invoke('chat-richard', {
-          body: { feedbackData }
-        });
-
-        setMessages((prev) => [...prev, {
-          sender: "bot",
-          content: "YOU'RE A LIFESAVER! 🦸‍♂️ Feedback saved! You literally saved my digital life! Now I can brag to my creator about being useful! 🎉"
-        }]);
-
-        // Reset feedback state
-        setFeedbackState({
-          stage: 0,
-          interactionRating: null,
-          experienceRating: null,
-          humorRating: null,
-          wouldRecommend: null,
-          additionalComments: null,
-        });
-      } else {
-        // Track feedback responses
-        if (botReply.includes("rate your interaction") && feedbackState.stage === 0) {
-          setFeedbackState(prev => ({ ...prev, stage: 1 }));
-        } else if (botReply.includes("overall experience") && feedbackState.stage === 1) {
-          const rating = parseInt(userMessage.content);
-          if (!isNaN(rating)) {
-            setFeedbackState(prev => ({ ...prev, interactionRating: rating, stage: 2 }));
-          }
-        } else if (botReply.includes("Rate my humor") && feedbackState.stage === 2) {
-          const rating = parseInt(userMessage.content);
-          if (!isNaN(rating)) {
-            setFeedbackState(prev => ({ ...prev, experienceRating: rating, stage: 3 }));
-          }
-        } else if (botReply.includes("recommend me") && feedbackState.stage === 3) {
-          const rating = parseInt(userMessage.content);
-          if (!isNaN(rating)) {
-            setFeedbackState(prev => ({ ...prev, humorRating: rating, stage: 4 }));
-          }
-        } else if (botReply.includes("additional comments") && feedbackState.stage === 4) {
-          const answer = userMessage.content.toLowerCase();
-          const recommend = answer.includes("yes") || answer.includes("yeah") || answer.includes("sure");
-          setFeedbackState(prev => ({ ...prev, wouldRecommend: recommend, stage: 5 }));
-        } else if (feedbackState.stage === 5) {
-          setFeedbackState(prev => ({ ...prev, additionalComments: userMessage.content }));
-        }
-
-        setMessages((prev) => [...prev, {
-          sender: "bot",
-          content: botReply
-        }]);
-      }
+      setMessages((prev) => [...prev, {
+        sender: "bot",
+        content: data.reply
+      }]);
     } catch (error) {
       console.error("Error:", error);
       setMessages((prev) => [...prev, {
         sender: "bot",
         content: "Oops! 😅 My circuits got a bit tangled. Can you try that again?"
       }]);
+      setMessageCount(prev => prev - 1); // Revert count on error
     } finally {
       setIsLoading(false);
       // Re-focus input after response
@@ -175,16 +116,24 @@ export const RichardChatbot = ({ isOpen, onClose }: RichardChatbotProps) => {
       <DialogContent className="max-w-4xl w-[95vw] md:w-full h-[90vh] md:h-[90vh] p-0 bg-black border-2 border-blue-500/30 overflow-hidden [&>button]:hidden">
         <div className="flex flex-col h-full">
           {/* Header with close button */}
-          <div className="flex items-center justify-between p-4 border-b border-blue-500/20">
-            <h2 className="text-xl font-bold text-white">Chat with Richard 🤖</h2>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              className="text-white hover:bg-blue-500/20"
-            >
-              <X className="h-5 w-5" />
-            </Button>
+          <div className="flex flex-col gap-2 p-4 border-b border-blue-500/20">
+            <div className="flex items-center justify-between">
+              <h2 className="text-xl font-bold text-white">Chat with Richard 🤖</h2>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={onClose}
+                className="text-white hover:bg-blue-500/20"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            <div className="flex items-start gap-2 bg-blue-950/30 rounded-lg p-3 border border-blue-500/20">
+              <AlertCircle className="h-4 w-4 text-blue-400 flex-shrink-0 mt-0.5" />
+              <div className="text-xs text-blue-200">
+                <span className="font-semibold">Free AI Service:</span> You have {MESSAGE_LIMIT - messageCount}/{MESSAGE_LIMIT} messages remaining. Use wisely! After Oct 13, 2025, usage may incur costs.
+              </div>
+            </div>
           </div>
 
           {/* Spline Robot */}

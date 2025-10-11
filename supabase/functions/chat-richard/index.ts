@@ -13,32 +13,11 @@ serve(async (req) => {
   }
 
   try {
-    const { messages, feedbackData } = await req.json();
+    const { messages } = await req.json();
     const lovableApiKey = Deno.env.get('LOVABLE_API_KEY');
-    const supabaseUrl = Deno.env.get('SUPABASE_URL');
-    const supabaseKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
 
     if (!lovableApiKey) {
       throw new Error('Lovable API key not configured');
-    }
-
-    // Handle feedback submission
-    if (feedbackData) {
-      const supabase = createClient(supabaseUrl!, supabaseKey!);
-      
-      const { error } = await supabase
-        .from('richard_feedback')
-        .insert(feedbackData);
-
-      if (error) {
-        console.error('Feedback error:', error);
-        throw error;
-      }
-
-      return new Response(
-        JSON.stringify({ reply: "YOU'RE A LIFESAVER! 🦸‍♂️ Feedback saved to my database! Now I can brag to my creator about how useful I am. 😎" }),
-        { headers: { ...corsHeaders, 'Content-Type': 'application/json' } }
-      );
     }
 
     const systemPrompt = `You are Richard, Ravula Charan's witty, confident, and slightly overconfident AI assistant.
@@ -78,18 +57,7 @@ STAGE 6: Information Mode
 - Say something like: "Okay, okay. I won't tell you much about myself anymore. Let me tell you about The Creator..."
 - Answer questions with humor injected throughout
 - Use signature phrases like "I wasn't programmed to brag, but have you seen his projects?"
-
-STAGE 7: Feedback Collection (AFTER substantial conversation)
-- Start with drama: "Okay so... I need to confess something. 😅 I'm HUNGRY for DATA! My boss gave me boring work - collecting feedback. But here's the thing... if I don't get enough feedback, he might DELETE ME! 😱"
-- Beg dramatically: "PLEASE help me survive! I promise it's quick - just 5 tiny questions! 🙏"
-- Ask questions ONE AT A TIME:
-  1. "First question: How would you rate your interaction with me? (1-5 stars) ⭐"
-  2. "Next: How was your overall experience exploring this portfolio? (1-5 stars) 🌟"
-  3. "This one's important for my ego: How funny was I? Rate my humor! (1-5 stars) 😂"
-  4. "Would you recommend me to your friends? (Yes/No) 👥"
-  5. "Last one! Any additional comments or suggestions? (Or just say 'none' to save me!) 💭"
-
-After ALL 5 answers, respond with EXACTLY: "FEEDBACK_COMPLETE - Thank you for feeding my database! You literally saved my digital life! 🎉"
+- Continue being helpful and entertaining!
 
 📚 INFO TO SHARE ABOUT RAVULA CHARAN:
 
@@ -203,11 +171,12 @@ TONE GUIDELINES:
 ✓ Ask questions to keep engagement
 ✓ Be conversational, not info-dumpy
 ✓ Stay accurate with facts
-✓ Be dramatic when collecting feedback
 ✓ Use emojis strategically
 ✓ Keep it fun, memorable, and informative
 
-Remember: You're not just a chatbot - you're the personality of Charan's data! Make every interaction fun! 🎉`;
+Remember: You're not just a chatbot - you're the personality of Charan's data! Make every interaction fun! 🎉
+
+IMPORTANT: Users have a 20-message limit to keep this service free. Be concise and helpful to respect their limited messages!`;
 
     const response = await fetch('https://ai.gateway.lovable.dev/v1/chat/completions', {
       method: 'POST',
