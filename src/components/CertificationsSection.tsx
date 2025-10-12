@@ -203,14 +203,18 @@ export const CertificationsSection = () => {
         </div>
 
         <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
-          <DialogContent className="max-w-4xl max-h-[90vh] p-2">
-            <div className="relative w-full h-full flex items-center justify-center">
+          <DialogContent className="max-w-[95vw] md:max-w-4xl p-0 border-0 bg-transparent shadow-none">
+            <div className="relative w-full flex items-center justify-center bg-background/95 backdrop-blur-sm rounded-lg border border-primary/20 p-2 md:p-4">
               {selectedCertificate && (
                 <img 
                   src={selectedCertificate} 
                   alt="Certificate"
-                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                  style={{ maxHeight: '80vh' }}
+                  className="w-full h-auto max-h-[70vh] md:max-h-[80vh] object-contain rounded-lg"
+                  loading="eager"
+                  onError={(e) => {
+                    console.error('Certificate image failed to load');
+                    e.currentTarget.style.display = 'none';
+                  }}
                 />
               )}
             </div>
