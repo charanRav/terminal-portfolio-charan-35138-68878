@@ -188,10 +188,10 @@ export const CertificationsSection = () => {
                   </div>
                 </div>
 
-                <div className="pt-2 md:pt-3 border-t border-border/20 space-y-2">
+                <div className="pt-2 md:pt-3 border-t border-border/20">
                   <button
                     onClick={() => setSelectedCertificate(cert.certificateImage)}
-                    className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-xs md:text-sm font-medium transition-colors w-full justify-center"
+                    className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-gradient-to-r from-blue-500/10 to-purple-500/10 hover:from-blue-500/20 hover:to-purple-500/20 rounded-full border border-primary/20 text-xs md:text-sm font-medium transition-all duration-300 w-full justify-center"
                   >
                     <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
                     View Certificate
@@ -203,26 +203,16 @@ export const CertificationsSection = () => {
         </div>
 
         <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
-          <DialogContent className="max-w-4xl w-[95vw] h-[90vh] p-0 bg-background border-2 border-primary/30 overflow-hidden [&>button]:hidden">
-            <div className="relative w-full h-full flex flex-col">
-              <div className="flex items-center justify-between p-4 border-b border-primary/20 bg-background/95 backdrop-blur-sm">
-                <h3 className="text-lg font-semibold">Certificate</h3>
-                <button
-                  onClick={() => setSelectedCertificate(null)}
-                  className="p-2 hover:bg-primary/10 rounded-lg transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              <div className="flex-1 overflow-auto p-4 bg-muted/20">
-                {selectedCertificate && (
-                  <img
-                    src={selectedCertificate}
-                    alt="Certificate"
-                    className="w-full h-auto object-contain"
-                  />
-                )}
-              </div>
+          <DialogContent className="max-w-4xl max-h-[90vh] p-2">
+            <div className="relative w-full h-full flex items-center justify-center">
+              {selectedCertificate && (
+                <img 
+                  src={selectedCertificate} 
+                  alt="Certificate"
+                  className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+                  style={{ maxHeight: '80vh' }}
+                />
+              )}
             </div>
           </DialogContent>
         </Dialog>
