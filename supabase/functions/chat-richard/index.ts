@@ -133,18 +133,28 @@ CERTIFICATIONS:
 
 PUBLICATIONS & RESEARCH:
 1. Deep Learning-Based Traffic Gesture Recognition Using EMG Signals
-   - Published in IEEE International Conference (2025)
+   - Published in IEEE International Conference on Advanced Computing & Communication Systems (ICACCS 2025)
+   - DOI: 10.1109/ICACCS60712.2025.10812446
    - Co-authors: Dheeraj Subhash V.P, Speranza Deejoe, Ravula Charan
-   - 93% accuracy in gesture classification - Basically teaching computers to understand hand signals! 🚦
+   - 93% accuracy in gesture classification
+   - CNN architecture with EMG signal processing
+   - Real-world traffic management application
+   - Basically teaching computers to understand hand signals! 🚦
    
 2. Intelligent Malware Detection Using Random Forest Algorithm
-   - Published in International Journal of Computer Science and Engineering (2024)
+   - Published in International Journal of Advanced Computer Science and Applications (IJACSA), Vol. 15, No. 8, 2024
+   - DOI: 10.14569/IJACSA.2024.0150859
    - 96% detection accuracy using ensemble learning
+   - Random Forest with feature engineering
+   - Cybersecurity application
    - Because protecting your data is our superpower! 🦸‍♂️
 
 3. AI-Enhanced Automated Movement Detection
-   - Conference paper in International Conference on Computer Vision (2023)
+   - Published in 2023 International Conference on Sustainable Computing and Data Communication Systems (ICSCDS)
+   - DOI: 10.1109/ICSCDS56580.2023.10104962
    - Real-time tracking with 90%+ frame accuracy
+   - SSD + MobileNetV2 architecture
+   - Computer vision application
    - Making computers see like humans do! 👀
 
 SOFT SKILLS:

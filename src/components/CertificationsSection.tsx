@@ -1,4 +1,6 @@
-import { Award, ExternalLink, Calendar } from "lucide-react";
+import { Award, ExternalLink, Calendar, X } from "lucide-react";
+import { useState } from "react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 import oracleOci from "@/assets/certificates/oracle-oci-2024.png";
 import awsCcp from "@/assets/certificates/aws-cloud-practitioner.png";
 import pythonBootcamp from "@/assets/certificates/python-bootcamp.png";
@@ -11,6 +13,8 @@ import htmlEssential from "@/assets/certificates/html-essential.png";
 import careerEssentials from "@/assets/certificates/career-essentials-data-analysis.png";
 
 export const CertificationsSection = () => {
+  const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
+
   const certifications = [
     {
       title: "Oracle Cloud Infrastructure 2024 Certified Foundations Associate",
@@ -146,37 +150,37 @@ export const CertificationsSection = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {certifications.map((cert, index) => (
             <div
               key={cert.title}
-              className={`glass rounded-2xl p-6 hover:scale-105 transition-all duration-300 animate-slide-up border-l-4 ${cert.color}`}
+              className={`glass rounded-2xl p-4 md:p-6 hover:scale-105 transition-all duration-300 animate-slide-up border-l-4 ${cert.color} flex flex-col h-full`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="mb-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <Award className="w-6 h-6 text-orange-500" />
-                  <h3 className="text-lg font-semibold line-clamp-2">{cert.title}</h3>
+              <div className="mb-3 md:mb-4">
+                <div className="flex items-start gap-2 md:gap-3 mb-2 md:mb-3">
+                  <Award className="w-5 h-5 md:w-6 md:h-6 text-orange-500 flex-shrink-0 mt-1" />
+                  <h3 className="text-base md:text-lg font-semibold line-clamp-2 leading-tight">{cert.title}</h3>
                 </div>
-                <div className="flex items-center justify-between">
-                  <p className="text-sm text-muted-foreground">{cert.provider}</p>
-                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                  <p className="text-xs md:text-sm text-muted-foreground">{cert.provider}</p>
+                  <div className="flex items-center gap-1 md:gap-2 text-xs text-muted-foreground">
                     <Calendar className="w-3 h-3" />
                     {cert.date}
                   </div>
                 </div>
               </div>
 
-              <p className="text-muted-foreground mb-4 text-sm">{cert.description}</p>
+              <p className="text-muted-foreground mb-3 md:mb-4 text-xs md:text-sm line-clamp-2">{cert.description}</p>
 
-              <div className="space-y-3">
+              <div className="space-y-3 mt-auto">
                 <div>
-                  <span className="text-xs font-medium mb-2 block text-muted-foreground">Skills Covered:</span>
-                  <div className="flex flex-wrap gap-2">
+                  <span className="text-xs font-medium mb-1.5 md:mb-2 block text-muted-foreground">Skills Covered:</span>
+                  <div className="flex flex-wrap gap-1.5 md:gap-2">
                     {cert.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="px-2 py-1 bg-primary/10 text-primary rounded-md text-xs font-medium"
+                        className="px-2 py-0.5 md:py-1 bg-primary/10 text-primary rounded-md text-[10px] md:text-xs font-medium leading-tight"
                       >
                         {skill}
                       </span>
@@ -184,24 +188,44 @@ export const CertificationsSection = () => {
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-border/20 space-y-2">
-                  <p className="text-xs text-muted-foreground">
-                    {cert.credentialId}
-                  </p>
-                  <a
-                    href={cert.certificateImage}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-sm font-medium transition-colors w-full justify-center"
+                <div className="pt-2 md:pt-3 border-t border-border/20 space-y-2">
+                  <button
+                    onClick={() => setSelectedCertificate(cert.certificateImage)}
+                    className="inline-flex items-center gap-2 px-3 md:px-4 py-1.5 md:py-2 bg-primary/10 hover:bg-primary/20 text-primary rounded-lg text-xs md:text-sm font-medium transition-colors w-full justify-center"
                   >
-                    <ExternalLink className="w-4 h-4" />
+                    <ExternalLink className="w-3 h-3 md:w-4 md:h-4" />
                     View Certificate
-                  </a>
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
+          <DialogContent className="max-w-4xl w-[95vw] h-[90vh] p-0 bg-background border-2 border-primary/30 overflow-hidden [&>button]:hidden">
+            <div className="relative w-full h-full flex flex-col">
+              <div className="flex items-center justify-between p-4 border-b border-primary/20 bg-background/95 backdrop-blur-sm">
+                <h3 className="text-lg font-semibold">Certificate</h3>
+                <button
+                  onClick={() => setSelectedCertificate(null)}
+                  className="p-2 hover:bg-primary/10 rounded-lg transition-colors"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+              <div className="flex-1 overflow-auto p-4 bg-muted/20">
+                {selectedCertificate && (
+                  <img
+                    src={selectedCertificate}
+                    alt="Certificate"
+                    className="w-full h-auto object-contain"
+                  />
+                )}
+              </div>
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
