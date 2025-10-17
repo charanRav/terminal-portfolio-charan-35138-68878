@@ -18,7 +18,7 @@ export const LoadingAnimation = () => {
     const interval = setInterval(() => {
       setProgress(prev => {
         if (prev >= 100) return 100;
-        const newProgress = prev + 1.2;
+        const newProgress = prev + 2.8;
         
         // Update phase based on progress
         if (newProgress <= 20) setCurrentPhase(0);

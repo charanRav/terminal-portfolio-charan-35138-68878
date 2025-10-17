@@ -52,7 +52,7 @@ export const AIProjectsUpdated = () => {
                   <video 
                     className="w-full h-full object-cover"
                     controls
-                    preload="metadata"
+                    preload="none"
                   >
                     <source src={project.videoUrl} type="video/mp4" />
                     Your browser does not support the video tag.
