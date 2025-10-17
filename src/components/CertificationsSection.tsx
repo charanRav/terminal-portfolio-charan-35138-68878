@@ -11,6 +11,9 @@ import cssEssential from "@/assets/certificates/css-essential.png";
 import oracleDbSql from "@/assets/certificates/oracle-database-sql.png";
 import htmlEssential from "@/assets/certificates/html-essential.png";
 import careerEssentials from "@/assets/certificates/career-essentials-data-analysis.png";
+import aiFoundationsMl from "@/assets/certificates/ai-foundations-ml.png";
+import promptEngineeringChatgpt from "@/assets/certificates/prompt-engineering-chatgpt.png";
+import chatbotOpenaiLangchain from "@/assets/certificates/chatbot-openai-langchain.png";
 
 export const CertificationsSection = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
@@ -125,6 +128,39 @@ export const CertificationsSection = () => {
       credentialId: "ea129cb8bd51fe6c5c8c3e9ff8a796d351320d382efe1c3f3fd097af653fe107",
       color: "border-indigo-500",
       certificateImage: htmlEssential
+    },
+    {
+      title: "Artificial Intelligence Foundations: Machine Learning",
+      provider: "LinkedIn Learning",
+      date: "October 2025",
+      status: "Completed",
+      description: "Machine Learning fundamentals and AI foundations",
+      skills: ["Machine Learning", "Artificial Intelligence (AI)"],
+      credentialId: "26c20d78b6552991497355eb9d789fa23164b230f9b1234bfbe3b007fb7",
+      color: "border-violet-500",
+      certificateImage: aiFoundationsMl
+    },
+    {
+      title: "Prompt Engineering with ChatGPT",
+      provider: "LinkedIn Learning",
+      date: "October 2025",
+      status: "Completed",
+      description: "Advanced prompt engineering techniques for ChatGPT and AI tools",
+      skills: ["ChatGPT", "Prompt Engineering", "Artificial Intelligence (AI)"],
+      credentialId: "e7a8zba1ca3f8425035001bdc370ae80691d30252427bc1c071f928221",
+      color: "border-teal-500",
+      certificateImage: promptEngineeringChatgpt
+    },
+    {
+      title: "Building a Personalized Chatbot with OpenAI and LangChain",
+      provider: "LinkedIn Learning",
+      date: "October 2025",
+      status: "Completed",
+      description: "Building custom chatbots using OpenAI and LangChain frameworks",
+      skills: ["OpenAI Products", "LangChain", "Chatbot Development"],
+      credentialId: "681db67a37fa11ba29f4da181f5a6a89695817df5d9a3fb14bc4a48291",
+      color: "border-emerald-500",
+      certificateImage: chatbotOpenaiLangchain
     }
   ];
 
@@ -146,7 +182,7 @@ export const CertificationsSection = () => {
             Certifications
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Professional certifications in Python, AWS, and Data Analysis
+            Professional certifications in Python, AWS, AI, Machine Learning, and Data Analysis
           </p>
         </div>
 

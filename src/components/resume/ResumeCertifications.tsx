@@ -6,7 +6,10 @@ export const ResumeCertifications = () => {
     "Oracle Cloud Infrastructure 2024 Certified Foundations Associate",
     "AWS Certified Cloud Practitioner - Udemy",
     "Python Bootcamp - Udemy",
-    "Career Essentials in Data Analysis - Microsoft + LinkedIn"
+    "Career Essentials in Data Analysis - Microsoft + LinkedIn",
+    "Artificial Intelligence Foundations: Machine Learning - LinkedIn",
+    "Prompt Engineering with ChatGPT - LinkedIn",
+    "Building a Personalized Chatbot with OpenAI and LangChain - LinkedIn"
   ];
 
   return (

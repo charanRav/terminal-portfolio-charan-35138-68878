@@ -14,7 +14,7 @@ export const AIProjectsSection = () => {
     {
       title: "Posture Spine Recognition",
       description: "Camera-based AI system using computer vision to monitor and analyze user posture in real-time.",
-      link: "https://preview--spine-friend-browser-64504-53505.lovable.app/",
+      link: "https://spine-guard-git-main-charanravs-projects.vercel.app/",
       tech: ["Computer Vision", "OpenCV", "ML", "Real-time Analysis"],
     },
     {
