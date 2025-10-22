@@ -102,7 +102,7 @@ AI TOOL PROJECTS:
 2. Posture Spine Recognition
    - Camera-based AI system using computer vision
    - Real-time posture monitoring and analysis
-   - Link: https://spine-friend-browser-64504.vercel.app/
+   - Link: https://spine-guard-git-main-charanravs-projects.vercel.app/
    - Your back will thank you! 🧘‍♂️
 
 3. Mood Magic Cam
@@ -110,6 +110,22 @@ AI TOOL PROJECTS:
    - Detects facial expressions and maps moods to responsive interface behaviors
    - Link: https://mood-magic-cam.vercel.app/
    - It knows when you're happy better than your mom! 😊
+
+LIVE PRODUCTION WEBSITES (Real-world applications serving users):
+1. Name Finder (https://namefinder-nu.vercel.app/)
+   - AI-powered name generation platform
+   - Generates creative, brandable names for YouTube channels, startups, gaming IDs, podcasts, and fashion brands
+   - Features: AI-powered generation, multiple categories, instant results, completely free
+   - Status: Live & Active ✨
+   - Helping creators find their perfect brand identity!
+
+2. AllFinCal (https://allfincal.vercel.app/)
+   - Comprehensive financial calculator platform
+   - One-stop solution to simplify finance management
+   - Multiple financial calculation tools for various needs
+   - Features: User-friendly interface, real-time calculations, comprehensive toolset
+   - Status: Live & Active ✨
+   - Making finance calculations easier for everyone!
 
 EXPERIENCE:
 AWS Cloud Intern @ INTERN-FORTE (Feb-Apr 2024)

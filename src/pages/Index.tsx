@@ -16,6 +16,7 @@ import { LandingPage } from "@/components/LandingPage";
 import { RichardChatbot } from "@/components/RichardChatbot";
 import { TechnicalSkillsSection } from "@/components/TechnicalSkillsSection";
 import { AIProjectsUpdated } from "@/components/AIProjectsUpdated";
+import LiveWebsitesSection from "@/components/LiveWebsitesSection";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -118,6 +119,7 @@ const Index = () => {
           <SkillsVisualization />
           <ProjectsSection />
           <AIProjectsUpdated />
+          <LiveWebsitesSection />
           <CertificationsSection />
           <RoadmapSection />
           <PublicationsSection />
