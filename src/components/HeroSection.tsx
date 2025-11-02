@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { FileText, Github, Linkedin, Mail, FileCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { useLanguage } from "@/contexts/LanguageContext";
 import resumePreview from "@/assets/resume-preview.jpg";
 import coverLetterPreview from "@/assets/cover-letter-preview.png";
 
@@ -9,8 +10,14 @@ export const HeroSection = () => {
   const [currentText, setCurrentText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const { t } = useLanguage();
   
-  const interests = ["Software Engineer", "AI & Cloud Developer", "Data Analyst", "Emerging Tech Enthusiast"];
+  const interests = [
+    t('hero.roles.software'),
+    t('hero.roles.ai'),
+    t('hero.roles.data'),
+    t('hero.roles.tech')
+  ];
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -103,7 +110,7 @@ export const HeroSection = () => {
             </h1>
             
             <div className="text-base sm:text-xl md:text-2xl lg:text-3xl mb-6 sm:mb-8 min-h-[60px] sm:min-h-[80px] flex flex-col sm:flex-row items-center justify-center px-2">
-              <span className="hero-text mb-2 sm:mb-0 sm:mr-2">Aspiring </span>
+              <span className="hero-text mb-2 sm:mb-0 sm:mr-2">{t('hero.aspiring')} </span>
               <span className="hero-accent font-bold min-w-[280px] sm:min-w-[350px] text-center sm:text-left">
                 {currentText}
                 <span className="animate-pulse text-primary">|</span>
@@ -114,14 +121,14 @@ export const HeroSection = () => {
           {/* Enhanced description */}
           <div className="space-y-3 sm:space-y-4 max-w-3xl mx-auto px-2">
             <p className="text-base sm:text-lg md:text-xl hero-description">
-              B.Tech Computer Science & Engineering Graduate from{" "}
-              <span className="font-semibold text-blue-500">SRM Institute of Science and Technology</span>
+              {t('hero.description')}{" "}
+              <span className="font-semibold text-blue-500">{t('hero.university')}</span>
             </p>
             <p className="text-xl sm:text-2xl font-bold text-green-500 animate-pulse">
-              CGPA: 8.94 / 10 | Graduated May 2025
+              {t('hero.cgpa')}
             </p>
             <p className="text-sm sm:text-base md:text-lg hero-subtitle">
-              AI • Cloud Computing • Data Analytics • Intelligent Systems
+              {t('hero.interests')}
             </p>
           </div>
 
@@ -133,13 +140,13 @@ export const HeroSection = () => {
                 <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:scale-105 transition-all duration-300 flex items-center gap-3 shadow-2xl hover:shadow-blue-500/25 overflow-hidden w-full sm:w-auto">
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <FileText className="w-5 h-5 group-hover:animate-bounce relative z-10" />
-                  <span className="relative z-10 font-semibold">View Resume</span>
+                  <span className="relative z-10 font-semibold">{t('hero.viewResume')}</span>
                 </button>
               </DialogTrigger>
               <DialogContent className="max-w-5xl max-h-[95vh] p-0 overflow-hidden">
                 <DialogHeader className="p-6 pb-4 border-b border-border/20">
                   <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Resume - Ravula Charan
+                    {t('hero.resumeTitle')}
                   </DialogTitle>
                 </DialogHeader>
                 <div className="relative overflow-auto max-h-[75vh] bg-muted/20 p-4">
@@ -158,13 +165,13 @@ export const HeroSection = () => {
                 <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-cyan-600 text-white rounded-xl hover:scale-105 transition-all duration-300 flex items-center gap-3 shadow-2xl hover:shadow-green-500/25 overflow-hidden w-full sm:w-auto">
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   <FileCheck className="w-5 h-5 group-hover:animate-bounce relative z-10" />
-                  <span className="relative z-10 font-semibold">View Cover Letter</span>
+                  <span className="relative z-10 font-semibold">{t('hero.viewCoverLetter')}</span>
                 </button>
               </DialogTrigger>
               <DialogContent className="max-w-5xl max-h-[95vh] p-0 overflow-hidden">
                 <DialogHeader className="p-6 pb-4 border-b border-border/20">
                   <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-green-600 to-cyan-600 bg-clip-text text-transparent">
-                    Cover Letter - Ravula Charan
+                    {t('hero.coverLetterTitle')}
                   </DialogTitle>
                 </DialogHeader>
                 <div className="relative overflow-auto max-h-[75vh] bg-muted/20 p-4">
@@ -181,7 +188,7 @@ export const HeroSection = () => {
               href="#projects"
               className="group px-6 sm:px-8 py-3 sm:py-4 border-2 border-cyan-500 text-cyan-500 hover:bg-cyan-500 hover:text-white rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-cyan-500/25 font-semibold w-full sm:w-auto text-center"
             >
-              View Projects
+              {t('hero.viewProjects')}
             </a>
           </div>
 

@@ -2,21 +2,24 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { LanguageToggle } from "./LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
+  const { t } = useLanguage();
 
   const navItems = [
-    { id: "home", label: "Home" },
-    { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
-    { id: "projects", label: "Projects" },
-    { id: "certifications", label: "Certifications" },
-    { id: "roadmap", label: "Roadmap" },
-    { id: "publications", label: "Publications" },
-    { id: "gamezone", label: "GameZone" },
-    { id: "contact", label: "Contact" }
+    { id: "home", label: t('nav.home') },
+    { id: "about", label: t('nav.about') },
+    { id: "skills", label: t('nav.skills') },
+    { id: "projects", label: t('nav.projects') },
+    { id: "certifications", label: t('nav.certifications') },
+    { id: "roadmap", label: t('nav.roadmap') },
+    { id: "publications", label: t('nav.publications') },
+    { id: "gamezone", label: t('nav.gamezone') },
+    { id: "contact", label: t('nav.contact') }
   ];
 
   useEffect(() => {
@@ -68,13 +71,15 @@ export const Navigation = () => {
             ))}
           </div>
 
-          {/* Desktop Theme Toggle */}
-          <div className="hidden md:block">
+          {/* Desktop Controls */}
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageToggle />
             <ThemeToggle />
           </div>
 
           {/* Mobile Navigation - Fixed spacing */}
-          <div className="md:hidden flex items-center gap-3">
+          <div className="md:hidden flex items-center gap-2">
+            <LanguageToggle />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
