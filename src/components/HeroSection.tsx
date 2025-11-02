@@ -1,8 +1,9 @@
 
 import { useState, useEffect } from "react";
-import { FileText, Github, Linkedin, Mail, X } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, Download, FileCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ResumeSection } from "@/components/ResumeSection";
+import resumePreview from "@/assets/resume-preview.jpg";
+import coverLetterPreview from "@/assets/cover-letter-preview.png";
 
 export const HeroSection = () => {
   const [currentText, setCurrentText] = useState("");
@@ -126,6 +127,7 @@ export const HeroSection = () => {
 
           {/* Action buttons with enhanced styling */}
           <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center pt-6 sm:pt-8 px-4">
+            {/* Resume Dialog */}
             <Dialog>
               <DialogTrigger asChild>
                 <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-xl hover:scale-105 transition-all duration-300 flex items-center gap-3 shadow-2xl hover:shadow-blue-500/25 overflow-hidden w-full sm:w-auto">
@@ -134,14 +136,63 @@ export const HeroSection = () => {
                   <span className="relative z-10 font-semibold">View Resume</span>
                 </button>
               </DialogTrigger>
-              <DialogContent className="max-w-6xl max-h-[95vh] p-0 overflow-hidden">
-                <DialogHeader className="p-6 pb-0 border-b border-border/20">
+              <DialogContent className="max-w-5xl max-h-[95vh] p-0 overflow-hidden">
+                <DialogHeader className="p-6 pb-4 border-b border-border/20">
                   <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Ravula Charan - Resume
+                    Resume - Ravula Charan
                   </DialogTitle>
                 </DialogHeader>
-                <div className="h-[80vh] overflow-auto p-2">
-                  <ResumeSection />
+                <div className="relative overflow-auto max-h-[75vh] bg-muted/20">
+                  <img 
+                    src={resumePreview} 
+                    alt="Ravula Charan Resume" 
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="p-4 border-t border-border/20 flex justify-center">
+                  <a
+                    href="/Charan_Resume.pdf"
+                    download="Ravula_Charan_Resume.pdf"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/25"
+                  >
+                    <Download className="w-5 h-5" />
+                    Download Resume PDF
+                  </a>
+                </div>
+              </DialogContent>
+            </Dialog>
+
+            {/* Cover Letter Dialog */}
+            <Dialog>
+              <DialogTrigger asChild>
+                <button className="group relative px-6 sm:px-8 py-3 sm:py-4 bg-gradient-to-r from-green-600 to-cyan-600 text-white rounded-xl hover:scale-105 transition-all duration-300 flex items-center gap-3 shadow-2xl hover:shadow-green-500/25 overflow-hidden w-full sm:w-auto">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-green-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <FileCheck className="w-5 h-5 group-hover:animate-bounce relative z-10" />
+                  <span className="relative z-10 font-semibold">View Cover Letter</span>
+                </button>
+              </DialogTrigger>
+              <DialogContent className="max-w-5xl max-h-[95vh] p-0 overflow-hidden">
+                <DialogHeader className="p-6 pb-4 border-b border-border/20">
+                  <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-green-600 to-cyan-600 bg-clip-text text-transparent">
+                    Cover Letter - Ravula Charan
+                  </DialogTitle>
+                </DialogHeader>
+                <div className="relative overflow-auto max-h-[75vh] bg-muted/20">
+                  <img 
+                    src={coverLetterPreview} 
+                    alt="Ravula Charan Cover Letter" 
+                    className="w-full h-auto"
+                  />
+                </div>
+                <div className="p-4 border-t border-border/20 flex justify-center">
+                  <a
+                    href="/Charan_Cover_Letter.pdf"
+                    download="Ravula_Charan_Cover_Letter.pdf"
+                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-cyan-600 text-white rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-green-500/25"
+                  >
+                    <Download className="w-5 h-5" />
+                    Download Cover Letter PDF
+                  </a>
                 </div>
               </DialogContent>
             </Dialog>

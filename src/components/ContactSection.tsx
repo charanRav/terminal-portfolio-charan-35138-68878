@@ -40,7 +40,9 @@ export const ContactSection = () => {
       setIsSubmitting(true);
       
       // Using Formspree to send to ravulacharan7@gmail.com
-      const response = await fetch('https://formspree.io/f/xpwzgbve', {
+      // TODO: Replace 'YOUR_FORM_ID_HERE' with your actual Formspree form ID
+      // Get it from: https://formspree.io/forms (after creating your form)
+      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID_HERE', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
