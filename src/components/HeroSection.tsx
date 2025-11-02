@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { FileText, Github, Linkedin, Mail, Download, FileCheck } from "lucide-react";
+import { FileText, Github, Linkedin, Mail, FileCheck } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import resumePreview from "@/assets/resume-preview.jpg";
 import coverLetterPreview from "@/assets/cover-letter-preview.png";
@@ -142,22 +142,12 @@ export const HeroSection = () => {
                     Resume - Ravula Charan
                   </DialogTitle>
                 </DialogHeader>
-                <div className="relative overflow-auto max-h-[75vh] bg-muted/20">
+                <div className="relative overflow-auto max-h-[75vh] bg-muted/20 p-4">
                   <img 
                     src={resumePreview} 
                     alt="Ravula Charan Resume" 
                     className="w-full h-auto"
                   />
-                </div>
-                <div className="p-4 border-t border-border/20 flex justify-center">
-                  <a
-                    href="/Charan_Resume.pdf"
-                    download="Ravula_Charan_Resume.pdf"
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-blue-500/25"
-                  >
-                    <Download className="w-5 h-5" />
-                    Download Resume PDF
-                  </a>
                 </div>
               </DialogContent>
             </Dialog>
@@ -177,22 +167,12 @@ export const HeroSection = () => {
                     Cover Letter - Ravula Charan
                   </DialogTitle>
                 </DialogHeader>
-                <div className="relative overflow-auto max-h-[75vh] bg-muted/20">
+                <div className="relative overflow-auto max-h-[75vh] bg-muted/20 p-4">
                   <img 
                     src={coverLetterPreview} 
                     alt="Ravula Charan Cover Letter" 
                     className="w-full h-auto"
                   />
-                </div>
-                <div className="p-4 border-t border-border/20 flex justify-center">
-                  <a
-                    href="/Charan_Cover_Letter.pdf"
-                    download="Ravula_Charan_Cover_Letter.pdf"
-                    className="flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-green-600 to-cyan-600 text-white rounded-lg hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-green-500/25"
-                  >
-                    <Download className="w-5 h-5" />
-                    Download Cover Letter PDF
-                  </a>
                 </div>
               </DialogContent>
             </Dialog>
