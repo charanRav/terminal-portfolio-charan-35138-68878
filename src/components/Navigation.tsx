@@ -4,11 +4,13 @@ import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { LanguageToggle } from "./LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const { t } = useLanguage();
+  const isMobile = useIsMobile();
 
   const navItems = [
     { id: "home", label: t('nav.home') },
@@ -49,7 +51,7 @@ export const Navigation = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-40 bg-background/80 backdrop-blur-md border-b border-border">
+    <nav className={`fixed top-0 left-0 right-0 z-40 border-b border-border ${isMobile ? 'bg-background/95' : 'bg-background/80 backdrop-blur-md'}`}>
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16">
           <div className="font-bold text-xl text-muted-foreground">

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { ChevronRight, MessageCircle, ArrowRight } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 interface LandingPageProps {
   onExplore: () => void;
@@ -9,22 +10,26 @@ interface LandingPageProps {
 export const LandingPage = ({ onExplore, onChatOpen }: LandingPageProps) => {
   const [isHoveringExplore, setIsHoveringExplore] = useState(false);
   const [isHoveringChat, setIsHoveringChat] = useState(false);
+  const isMobile = useIsMobile();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-blue-950 to-slate-900 relative overflow-hidden">
-      {/* Animated background particles */}
-      {/* Updated Spline Robot - New Greeting Bot */}
-      <div className="absolute inset-0 overflow-hidden">
-        <iframe
-          src="https://my.spline.design/genkubgreetingrobot-6gjqpt88Yu2jF3R84agABSrr/"
-          frameBorder="0"
-          width="100%"
-          height="100%"
-          className="w-full h-full"
-          style={{ pointerEvents: 'auto' }}
-          allow="pointer-lock"
-        />
-      </div>
+      {/* 3D Robot - Desktop Only (Performance optimization) */}
+      {!isMobile ? (
+        <div className="absolute inset-0 overflow-hidden">
+          <iframe
+            src="https://my.spline.design/genkubgreetingrobot-6gjqpt88Yu2jF3R84agABSrr/"
+            frameBorder="0"
+            width="100%"
+            height="100%"
+            className="w-full h-full"
+            style={{ pointerEvents: 'auto' }}
+            allow="pointer-lock"
+          />
+        </div>
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-blue-950/50 to-slate-900" />
+      )}
       
       {/* Content Container */}
       <div className="relative z-10 container mx-auto px-6 py-20 flex items-center min-h-screen">
@@ -114,15 +119,15 @@ export const LandingPage = ({ onExplore, onChatOpen }: LandingPageProps) => {
 
           {/* Quick stats */}
           <div className="grid grid-cols-3 gap-4 pt-6">
-            <div className="glass rounded-xl p-5 text-center backdrop-blur-xl border border-blue-500/20 hover:border-blue-500/40 transition-all">
+            <div className={`glass rounded-xl p-5 text-center border border-blue-500/20 hover:border-blue-500/40 transition-all ${isMobile ? 'bg-slate-900/90' : 'backdrop-blur-xl'}`}>
               <div className="text-3xl md:text-4xl font-bold text-blue-400">8.94</div>
               <div className="text-xs text-slate-400 uppercase tracking-wide mt-2">CGPA</div>
             </div>
-            <div className="glass rounded-xl p-5 text-center backdrop-blur-xl border border-purple-500/20 hover:border-purple-500/40 transition-all">
+            <div className={`glass rounded-xl p-5 text-center border border-purple-500/20 hover:border-purple-500/40 transition-all ${isMobile ? 'bg-slate-900/90' : 'backdrop-blur-xl'}`}>
               <div className="text-3xl md:text-4xl font-bold text-purple-400">7+</div>
               <div className="text-xs text-slate-400 uppercase tracking-wide mt-2">Projects</div>
             </div>
-            <div className="glass rounded-xl p-5 text-center backdrop-blur-xl border border-cyan-500/20 hover:border-cyan-500/40 transition-all">
+            <div className={`glass rounded-xl p-5 text-center border border-cyan-500/20 hover:border-cyan-500/40 transition-all ${isMobile ? 'bg-slate-900/90' : 'backdrop-blur-xl'}`}>
               <div className="text-3xl md:text-4xl font-bold text-cyan-400">3</div>
               <div className="text-xs text-slate-400 uppercase tracking-wide mt-2">Publications</div>
             </div>

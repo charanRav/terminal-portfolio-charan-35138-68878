@@ -17,12 +17,14 @@ import { RichardChatbot } from "@/components/RichardChatbot";
 import { TechnicalSkillsSection } from "@/components/TechnicalSkillsSection";
 import { AIProjectsUpdated } from "@/components/AIProjectsUpdated";
 import LiveWebsitesSection from "@/components/LiveWebsitesSection";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [showLanding, setShowLanding] = useState(true);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -78,9 +80,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
-      {/* Data Flow Animation Background */}
+      {/* Data Flow Animation Background - Optimized for mobile */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        {[...Array(12)].map((_, i) => (
+        {[...Array(isMobile ? 3 : 12)].map((_, i) => (
           <div
             key={i}
             className="absolute w-2 h-2 bg-blue-500/20 rounded-full animate-pulse"
@@ -89,10 +91,11 @@ const Index = () => {
               top: `${Math.random() * 100}%`,
               animationDelay: `${i * 0.5}s`,
               animationDuration: `${3 + Math.random() * 2}s`,
+              willChange: 'transform, opacity',
             }}
           />
         ))}
-        {[...Array(8)].map((_, i) => (
+        {[...Array(isMobile ? 2 : 8)].map((_, i) => (
           <div
             key={`line-${i}`}
             className="absolute h-px bg-gradient-to-r from-transparent via-blue-500/10 to-transparent animate-pulse"
@@ -103,6 +106,7 @@ const Index = () => {
               transform: `rotate(${Math.random() * 360}deg)`,
               animationDelay: `${i * 0.8}s`,
               animationDuration: `${4 + Math.random() * 3}s`,
+              willChange: 'transform, opacity',
             }}
           />
         ))}
@@ -158,7 +162,7 @@ const Index = () => {
         
         <RichardChatbot isOpen={isChatOpen} onClose={handleChatClose} />
 
-        <footer className="py-8 text-center text-muted-foreground border-t border-border/20 backdrop-blur-sm bg-background/80">
+        <footer className={`py-8 text-center text-muted-foreground border-t border-border/20 ${isMobile ? 'bg-background/95' : 'backdrop-blur-sm bg-background/80'}`}>
           <div className="container mx-auto px-6">
             <p className="text-sm">&copy; 2024 Ravula Charan. Built with passion and lots of coffee ☕</p>
           </div>

@@ -1,10 +1,18 @@
 import { useEffect, useState } from "react";
 import { BarChart3, Database, TrendingUp, Zap, Sparkles, Brain, Code, Target } from "lucide-react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export const LoadingAnimation = () => {
   const [progress, setProgress] = useState(0);
   const [currentPhase, setCurrentPhase] = useState(0);
   const [dimensionShift, setDimensionShift] = useState(0);
+  const isMobile = useIsMobile();
+
+  // Performance optimized counts
+  const neuronCount = isMobile ? 15 : 50;
+  const connectionCount = isMobile ? 8 : 30;
+  const dataNodeCount = isMobile ? 6 : 20;
+  const ambientCount = isMobile ? 3 : 8;
 
   const phases = [
     { icon: Database, text: "Initializing Analytics Framework...", color: "text-blue-400" },
@@ -41,9 +49,9 @@ export const LoadingAnimation = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-black via-slate-950 to-blue-950 flex items-center justify-center relative overflow-hidden">
-      {/* Neural Network Background */}
+      {/* Neural Network Background - Optimized */}
       <div className="absolute inset-0 opacity-10">
-        {[...Array(50)].map((_, i) => (
+        {[...Array(neuronCount)].map((_, i) => (
           <div
             key={`neuron-${i}`}
             className="absolute w-1 h-1 rounded-full bg-blue-400"
@@ -52,11 +60,12 @@ export const LoadingAnimation = () => {
               top: `${Math.random() * 100}%`,
               boxShadow: '0 0 10px rgba(59, 130, 246, 0.6)',
               animation: `gentle-pulse ${3 + Math.random() * 2}s ease-in-out infinite`,
-              animationDelay: `${Math.random() * 2}s`
+              animationDelay: `${Math.random() * 2}s`,
+              willChange: 'transform, opacity'
             }}
           />
         ))}
-        {[...Array(30)].map((_, i) => (
+        {[...Array(connectionCount)].map((_, i) => (
           <svg
             key={`connection-${i}`}
             className="absolute pointer-events-none"
@@ -80,9 +89,9 @@ export const LoadingAnimation = () => {
         ))}
       </div>
 
-      {/* Animated Data Nodes */}
+      {/* Animated Data Nodes - Optimized */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(dataNodeCount)].map((_, i) => (
           <div
             key={i}
             className="absolute w-2 h-2 rounded-full"
@@ -92,7 +101,8 @@ export const LoadingAnimation = () => {
               background: `linear-gradient(135deg, rgba(59, 130, 246, ${0.6 + Math.sin(i) * 0.3}), rgba(139, 92, 246, ${0.4 + Math.cos(i) * 0.2}))`,
               animation: `professional-float ${8 + (i % 3) * 2}s ease-in-out infinite`,
               animationDelay: `${i * 0.2}s`,
-              boxShadow: `0 0 ${8 + Math.sin(i) * 4}px rgba(59, 130, 246, 0.4)`
+              boxShadow: `0 0 ${8 + Math.sin(i) * 4}px rgba(59, 130, 246, 0.4)`,
+              willChange: 'transform'
             }}
           />
         ))}
@@ -186,7 +196,7 @@ export const LoadingAnimation = () => {
             
             {/* Central Icon Container */}
             <div 
-              className="absolute inset-6 rounded-full bg-gradient-to-br from-slate-800/80 via-blue-900/60 to-purple-900/80 flex items-center justify-center backdrop-blur-xl border border-blue-400/20"
+              className={`absolute inset-6 rounded-full bg-gradient-to-br from-slate-800/80 via-blue-900/60 to-purple-900/80 flex items-center justify-center border border-blue-400/20 ${isMobile ? '' : 'backdrop-blur-xl'}`}
               style={{
                 boxShadow: `
                   inset 0 0 ${25 + dimensionShift * 15}px rgba(59, 130, 246, 0.15),
@@ -225,7 +235,7 @@ export const LoadingAnimation = () => {
 
         {/* Professional Status Display */}
         <div className="space-y-4">
-          <div className="bg-slate-900/40 backdrop-blur-xl rounded-2xl border border-blue-400/20 p-6 max-w-md mx-auto">
+          <div className={`rounded-2xl border border-blue-400/20 p-6 max-w-md mx-auto ${isMobile ? 'bg-slate-900/90' : 'bg-slate-900/40 backdrop-blur-xl'}`}>
             <p className={`text-lg font-semibold ${phases[currentPhase].color} mb-2 transition-all duration-500`}>
               {phases[currentPhase].text}
             </p>
@@ -259,7 +269,7 @@ export const LoadingAnimation = () => {
         </div>
 
         {/* Professional Console */}
-        <div className="bg-slate-950/60 backdrop-blur-xl rounded-xl border border-blue-400/20 p-6 max-w-lg mx-auto font-mono text-sm">
+        <div className={`rounded-xl border border-blue-400/20 p-6 max-w-lg mx-auto font-mono text-sm ${isMobile ? 'bg-slate-950/95' : 'bg-slate-950/60 backdrop-blur-xl'}`}>
           <div className="flex items-center gap-2 mb-4 pb-2 border-b border-slate-700/50">
             <div className="w-3 h-3 rounded-full bg-red-400/80"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-400/80"></div>
@@ -283,9 +293,9 @@ export const LoadingAnimation = () => {
         </div>
       </div>
 
-      {/* Professional Ambient Effects */}
+      {/* Professional Ambient Effects - Optimized */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(8)].map((_, i) => (
+        {[...Array(ambientCount)].map((_, i) => (
           <div
             key={`ambient-${i}`}
             className="absolute opacity-5"
