@@ -1,7 +1,9 @@
 
 import { Calendar, Award, Briefcase, GraduationCap, BookOpen } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 export const RoadmapSection = () => {
+  const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
   const roadmapItems = [
     {
       year: "Aug 2023 - Sep 2023",
@@ -66,8 +68,8 @@ export const RoadmapSection = () => {
   ];
 
   return (
-    <section id="roadmap" className="py-20 px-6 relative overflow-hidden">
-      <div className="container mx-auto max-w-4xl">
+    <section id="roadmap" className="py-20 px-6 relative overflow-hidden" ref={ref}>
+      <div className={`container mx-auto max-w-4xl transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl mb-4 flex items-center justify-center gap-3 font-bold text-foreground">
             <Calendar className="w-12 h-12 text-blue-500 animate-float" />

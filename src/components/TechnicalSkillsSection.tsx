@@ -1,6 +1,8 @@
 import { Code, Database, Cloud, Brain } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 export const TechnicalSkillsSection = () => {
+  const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
   const skillCategories = [
     {
       title: "Languages",
@@ -29,8 +31,8 @@ export const TechnicalSkillsSection = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 px-6 bg-gradient-to-br from-background via-muted/10 to-background">
-      <div className="container mx-auto max-w-7xl">
+    <section id="skills" className="py-20 px-6 bg-gradient-to-br from-background via-muted/10 to-background" ref={ref}>
+      <div className={`container mx-auto max-w-7xl transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent mb-4">
             Technical Skills

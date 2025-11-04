@@ -152,8 +152,9 @@ export const HeroSection = () => {
                 <div className="relative overflow-auto max-h-[75vh] bg-muted/20 p-4">
                   <img 
                     src={resumePreview} 
-                    alt="Ravula Charan Resume" 
+                    alt="Ravula Charan Resume"
                     className="w-full h-auto"
+                    loading="lazy"
                   />
                 </div>
               </DialogContent>
@@ -179,6 +180,7 @@ export const HeroSection = () => {
                     src={coverLetterPreview} 
                     alt="Ravula Charan Cover Letter" 
                     className="w-full h-auto"
+                    loading="lazy"
                   />
                 </div>
               </DialogContent>

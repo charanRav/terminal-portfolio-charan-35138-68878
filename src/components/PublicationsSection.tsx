@@ -2,8 +2,10 @@
 import { BookOpen, Calendar, Award, Eye } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 export const PublicationsSection = () => {
+  const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
   const publications = [
     {
       title: "Proactive Malware Detection to Secure Web Data Using Random Forest Algorithm",
@@ -35,7 +37,7 @@ export const PublicationsSection = () => {
   ];
 
   return (
-    <section id="publications" className="py-20 px-6 bg-gradient-to-br from-muted/20 via-background to-muted/10 relative overflow-hidden">
+    <section id="publications" className="py-20 px-6 bg-gradient-to-br from-muted/20 via-background to-muted/10 relative overflow-hidden" ref={ref}>
       {/* Background decoration */}
       <div className="absolute inset-0 opacity-30">
         {[...Array(6)].map((_, i) => (
@@ -52,7 +54,7 @@ export const PublicationsSection = () => {
         ))}
       </div>
 
-      <div className="container mx-auto relative z-10">
+      <div className={`container mx-auto relative z-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
             Publications & Research
@@ -119,6 +121,7 @@ export const PublicationsSection = () => {
                           alt={`Certificate for ${pub.title}`}
                           className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
                           style={{ maxHeight: '80vh' }}
+                          loading="lazy"
                         />
                       </div>
                     </DialogContent>

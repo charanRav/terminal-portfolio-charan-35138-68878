@@ -1,6 +1,7 @@
 import { Award, ExternalLink, Calendar, X } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import oracleOci from "@/assets/certificates/oracle-oci-2024.png";
 import awsCcp from "@/assets/certificates/aws-cloud-practitioner.png";
 import pythonBootcamp from "@/assets/certificates/python-bootcamp.png";
@@ -16,6 +17,7 @@ import promptEngineeringChatgpt from "@/assets/certificates/prompt-engineering-c
 import chatbotOpenaiLangchain from "@/assets/certificates/chatbot-openai-langchain.png";
 
 export const CertificationsSection = () => {
+  const { ref, isInView } = useIntersectionObserver({ threshold: 0.05 });
   const [selectedCertificate, setSelectedCertificate] = useState<string | null>(null);
 
   const certifications = [
@@ -174,8 +176,8 @@ export const CertificationsSection = () => {
   };
 
   return (
-    <section id="certifications" className="py-20 px-6 bg-muted/10">
-      <div className="container mx-auto">
+    <section id="certifications" className="py-20 px-6 bg-muted/10" ref={ref}>
+      <div className={`container mx-auto transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold section-heading mb-4 flex items-center justify-center gap-3">
             <Award className="w-12 h-12 text-orange-500 animate-float" />

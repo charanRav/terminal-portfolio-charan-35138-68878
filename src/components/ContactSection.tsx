@@ -2,8 +2,10 @@
 import { Mail, Linkedin, Send, User, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 
 export const ContactSection = () => {
+  const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -117,8 +119,8 @@ Best regards,`);
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-muted/20">
-      <div className="container mx-auto">
+    <section id="contact" className="py-20 px-6 bg-muted/20" ref={ref}>
+      <div className={`container mx-auto transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
           Get In Touch
         </h2>

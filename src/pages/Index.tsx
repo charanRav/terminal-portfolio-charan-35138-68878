@@ -1,23 +1,26 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { CommandTerminal } from "@/components/CommandTerminal";
 import { LoadingAnimation } from "@/components/LoadingAnimation";
 import { HeroSection } from "@/components/HeroSection";
-import { AboutSection } from "@/components/AboutSection";
-import { SkillsVisualization } from "@/components/SkillsVisualization";
-import { ProjectsSection } from "@/components/ProjectsSection";
-import { CertificationsSection } from "@/components/CertificationsSection";
-import { RoadmapSection } from "@/components/RoadmapSection";
-import { PublicationsSection } from "@/components/PublicationsSection";
-import { GameZoneSection } from "@/components/GameZoneSection";
-import { ContactSection } from "@/components/ContactSection";
 import { LandingPage } from "@/components/LandingPage";
 import { RichardChatbot } from "@/components/RichardChatbot";
-import { TechnicalSkillsSection } from "@/components/TechnicalSkillsSection";
-import { AIProjectsUpdated } from "@/components/AIProjectsUpdated";
-import LiveWebsitesSection from "@/components/LiveWebsitesSection";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { LazySection } from "@/components/LazySection";
+import { Skeleton } from "@/components/ui/skeleton";
+
+// Lazy load heavy sections for better performance
+const AboutSection = lazy(() => import("@/components/AboutSection").then(m => ({ default: m.AboutSection })));
+const TechnicalSkillsSection = lazy(() => import("@/components/TechnicalSkillsSection").then(m => ({ default: m.TechnicalSkillsSection })));
+const SkillsVisualization = lazy(() => import("@/components/SkillsVisualization").then(m => ({ default: m.SkillsVisualization })));
+const ProjectsSection = lazy(() => import("@/components/ProjectsSection").then(m => ({ default: m.ProjectsSection })));
+const AIProjectsUpdated = lazy(() => import("@/components/AIProjectsUpdated").then(m => ({ default: m.AIProjectsUpdated })));
+const LiveWebsitesSection = lazy(() => import("@/components/LiveWebsitesSection"));
+const CertificationsSection = lazy(() => import("@/components/CertificationsSection").then(m => ({ default: m.CertificationsSection })));
+const RoadmapSection = lazy(() => import("@/components/RoadmapSection").then(m => ({ default: m.RoadmapSection })));
+const PublicationsSection = lazy(() => import("@/components/PublicationsSection").then(m => ({ default: m.PublicationsSection })));
+const GameZoneSection = lazy(() => import("@/components/GameZoneSection").then(m => ({ default: m.GameZoneSection })));
+const ContactSection = lazy(() => import("@/components/ContactSection").then(m => ({ default: m.ContactSection })));
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -118,17 +121,19 @@ const Index = () => {
         
         <main className="relative">
           <HeroSection />
-          <AboutSection />
-          <TechnicalSkillsSection />
-          <SkillsVisualization />
-          <ProjectsSection />
-          <AIProjectsUpdated />
-          <LiveWebsitesSection />
-          <CertificationsSection />
-          <RoadmapSection />
-          <PublicationsSection />
-          <GameZoneSection />
-          <ContactSection />
+          <Suspense fallback={<Skeleton className="h-96 w-full" />}>
+            <LazySection component={AboutSection} />
+            <LazySection component={TechnicalSkillsSection} />
+            <LazySection component={SkillsVisualization} />
+            <LazySection component={ProjectsSection} />
+            <LazySection component={AIProjectsUpdated} />
+            <LazySection component={LiveWebsitesSection} />
+            <LazySection component={CertificationsSection} />
+            <LazySection component={RoadmapSection} />
+            <LazySection component={PublicationsSection} />
+            <LazySection component={GameZoneSection} />
+            <LazySection component={ContactSection} />
+          </Suspense>
         </main>
         
         {/* Floating Chat Button with Notification */}
