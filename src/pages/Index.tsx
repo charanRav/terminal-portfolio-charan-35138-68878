@@ -8,6 +8,8 @@ import { RichardChatbot } from "@/components/RichardChatbot";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { LazySection } from "@/components/LazySection";
 import { Skeleton } from "@/components/ui/skeleton";
+import { ScrollProgress } from "@/components/ScrollProgress";
+import { useParallax } from "@/hooks/use-parallax";
 
 // Lazy load heavy sections for better performance
 const AboutSection = lazy(() => import("@/components/AboutSection").then(m => ({ default: m.AboutSection })));
@@ -28,6 +30,7 @@ const Index = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const isMobile = useIsMobile();
+  const parallaxOffset = useParallax(0.3);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -83,8 +86,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden relative">
-      {/* Data Flow Animation Background - Optimized for mobile */}
-      <div className="fixed inset-0 z-0 pointer-events-none">
+      {/* Scroll Progress Indicator */}
+      <ScrollProgress />
+      
+      {/* Data Flow Animation Background - Optimized for mobile with parallax on desktop */}
+      <div 
+        className="fixed inset-0 z-0 pointer-events-none"
+        style={{
+          transform: !isMobile ? `translateY(${parallaxOffset}px)` : undefined,
+          willChange: !isMobile ? 'transform' : undefined,
+        }}
+      >
         {[...Array(isMobile ? 3 : 12)].map((_, i) => (
           <div
             key={i}
