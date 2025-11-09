@@ -1,7 +1,9 @@
 
 import { Award } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ResumePublications = () => {
+  const { t } = useLanguage();
   const publications = [
     {
       title: "AI Enhanced Automated Movement Detection",
@@ -27,7 +29,7 @@ export const ResumePublications = () => {
     <div className="glass p-8 rounded-2xl">
       <div className="flex items-center gap-3 mb-6">
         <Award className="w-6 h-6 text-yellow-500" />
-        <h3 className="text-2xl font-bold">Publications and Conferences</h3>
+        <h3 className="text-2xl font-bold">{t('resume.publications.title')}</h3>
       </div>
       <div className="space-y-4">
         {publications.map((publication, index) => (

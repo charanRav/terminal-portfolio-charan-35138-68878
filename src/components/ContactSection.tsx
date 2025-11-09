@@ -3,9 +3,11 @@ import { Mail, Linkedin, Send, User, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ContactSection = () => {
   const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,8 +22,8 @@ export const ContactSection = () => {
     // Basic validation
     if (!formData.name || !formData.email || !formData.message) {
       toast({
-        title: "Error",
-        description: "Please fill in all fields",
+        title: t('contact.errorTitle'),
+        description: t('contact.errorAllFields'),
         variant: "destructive"
       });
       return;
@@ -31,8 +33,8 @@ export const ContactSection = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
-        title: "Error",
-        description: "Please enter a valid email address",
+        title: t('contact.errorTitle'),
+        description: t('contact.errorInvalidEmail'),
         variant: "destructive"
       });
       return;
@@ -61,8 +63,8 @@ export const ContactSection = () => {
 
       if (response.ok) {
         toast({
-          title: "Message Sent!",
-          description: "Thank you for your message. I'll get back to you soon!",
+          title: t('contact.successTitle'),
+          description: t('contact.successDesc'),
         });
         // Reset form
         setFormData({ name: "", email: "", message: "" });
@@ -71,8 +73,8 @@ export const ContactSection = () => {
       }
     } catch (error) {
       toast({
-        title: "Error",
-        description: "Failed to send message. Please try again or contact me directly.",
+        title: t('contact.errorTitle'),
+        description: t('contact.errorSendFailed'),
         variant: "destructive"
       });
     } finally {
@@ -104,15 +106,15 @@ Best regards,`);
       
       // Show success toast
       toast({
-        title: "Email Client Opening",
-        description: "Your default email client should open now. If not, please email ravulacharan7@gmail.com directly.",
+        title: t('contact.emailClientOpening'),
+        description: t('contact.emailClientOpeningDesc'),
       });
     } catch (error) {
       // Fallback: copy email to clipboard
       navigator.clipboard.writeText('ravulacharan7@gmail.com').then(() => {
         toast({
-          title: "Email Copied",
-          description: "Email address copied to clipboard: ravulacharan7@gmail.com",
+          title: t('contact.emailCopied'),
+          description: t('contact.emailCopiedDesc'),
         });
       });
     }
@@ -122,16 +124,15 @@ Best regards,`);
     <section id="contact" className="py-20 px-6 bg-muted/20" ref={ref}>
       <div className={`container mx-auto transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 gradient-text">
-          Get In Touch
+          {t('contact.title')}
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 max-w-4xl mx-auto">
           <div className="space-y-8 animate-slide-up">
             <div>
-              <h3 className="text-2xl font-semibold mb-6">Let's Connect</h3>
+              <h3 className="text-2xl font-semibold mb-6">{t('contact.connect')}</h3>
               <p className="text-muted-foreground mb-8">
-                I'm always interested in discussing new opportunities, innovative projects, 
-                or just having a conversation about AI, technology, and problem-solving.
+                {t('contact.subtitle')}
               </p>
             </div>
 
@@ -142,7 +143,7 @@ Best regards,`);
               >
                 <Mail className="w-6 h-6 text-tech-blue group-hover:animate-float" />
                 <div>
-                  <div className="font-semibold">Email</div>
+                  <div className="font-semibold">{t('contact.email')}</div>
                   <div className="text-muted-foreground">ravulacharan7@gmail.com</div>
                 </div>
               </button>
@@ -155,8 +156,8 @@ Best regards,`);
               >
                 <Linkedin className="w-6 h-6 text-tech-blue group-hover:animate-float" />
                 <div>
-                  <div className="font-semibold">LinkedIn</div>
-                  <div className="text-muted-foreground">Connect with me</div>
+                  <div className="font-semibold">{t('contact.linkedin')}</div>
+                  <div className="text-muted-foreground">{t('contact.linkedinText')}</div>
                 </div>
               </a>
             </div>
@@ -167,7 +168,7 @@ Best regards,`);
               <div className="space-y-2">
                 <label htmlFor="name" className="flex items-center gap-2 text-sm font-medium">
                   <User className="w-4 h-4" />
-                  Name
+                  {t('contact.name')}
                 </label>
                 <input
                   type="text"
@@ -177,14 +178,14 @@ Best regards,`);
                   onChange={handleChange}
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 disabled:opacity-50"
-                  placeholder="Your name"
+                  placeholder={t('contact.namePlaceholder')}
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="email" className="flex items-center gap-2 text-sm font-medium">
                   <Mail className="w-4 h-4" />
-                  Email
+                  {t('contact.emailLabel')}
                 </label>
                 <input
                   type="email"
@@ -194,14 +195,14 @@ Best regards,`);
                   onChange={handleChange}
                   disabled={isSubmitting}
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 disabled:opacity-50"
-                  placeholder="your.email@example.com"
+                  placeholder={t('contact.emailPlaceholder')}
                 />
               </div>
 
               <div className="space-y-2">
                 <label htmlFor="message" className="flex items-center gap-2 text-sm font-medium">
                   <MessageCircle className="w-4 h-4" />
-                  Message
+                  {t('contact.message')}
                 </label>
                 <textarea
                   id="message"
@@ -211,7 +212,7 @@ Best regards,`);
                   disabled={isSubmitting}
                   rows={5}
                   className="w-full px-4 py-3 rounded-lg border border-input bg-background focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 resize-none disabled:opacity-50"
-                  placeholder="Your message..."
+                  placeholder={t('contact.messagePlaceholder')}
                 />
               </div>
 
@@ -221,7 +222,7 @@ Best regards,`);
                 className="w-full px-6 py-3 bg-gradient-to-r from-tech-blue to-tech-purple text-white rounded-lg hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 group disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
                 <Send className="w-4 h-4 group-hover:animate-float" />
-                {isSubmitting ? "Sending..." : "Send Message"}
+                {isSubmitting ? t('contact.sending') : t('contact.send')}
               </button>
             </form>
           </div>

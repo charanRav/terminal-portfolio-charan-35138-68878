@@ -1,29 +1,31 @@
 import { Code, Database, Cloud, Brain } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const TechnicalSkillsSection = () => {
   const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
+  const { t } = useLanguage();
   const skillCategories = [
     {
-      title: "Languages",
+      title: t('skills.languages'),
       icon: Code,
       gradient: "from-blue-500 to-cyan-500",
       skills: ["Python", "Java", "SQL", "MySQL", "HTML", "CSS", "JavaScript"]
     },
     {
-      title: "Frameworks & Libraries",
+      title: t('skills.frameworks'),
       icon: Brain,
       gradient: "from-purple-500 to-pink-500",
       skills: ["Pandas", "NumPy", "Matplotlib", "scikit-learn"]
     },
     {
-      title: "Tools & Platforms",
+      title: t('skills.tools'),
       icon: Database,
       gradient: "from-green-500 to-emerald-500",
       skills: ["AWS (EC2, S3, Lambda)", "SAP Analytics Cloud", "Power BI", "Git", "VS Code", "Jupyter Notebook"]
     },
     {
-      title: "Core Concepts",
+      title: t('skills.concepts'),
       icon: Cloud,
       gradient: "from-orange-500 to-yellow-500",
       skills: ["Data Structures & Algorithms", "Machine Learning", "Cloud Architecture", "AI Automation", "Data Analytics", "Web Development"]
@@ -35,10 +37,10 @@ export const TechnicalSkillsSection = () => {
       <div className={`container mx-auto max-w-7xl transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent mb-4">
-            Technical Skills
+            {t('skills.title')}
           </h2>
           <p className="text-lg text-muted-foreground">
-            Proficiencies across programming languages, frameworks, and cloud platforms
+            {t('skills.subtitle')}
           </p>
         </div>
 
@@ -91,19 +93,19 @@ export const TechnicalSkillsSection = () => {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
           <div className="glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
             <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-2">7+</div>
-            <div className="text-sm text-muted-foreground">Languages</div>
+            <div className="text-sm text-muted-foreground">{t('skills.languagesCount')}</div>
           </div>
           <div className="glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
             <div className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent mb-2">4+</div>
-            <div className="text-sm text-muted-foreground">Libraries</div>
+            <div className="text-sm text-muted-foreground">{t('skills.librariesCount')}</div>
           </div>
           <div className="glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
             <div className="text-3xl font-bold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent mb-2">6+</div>
-            <div className="text-sm text-muted-foreground">Tools</div>
+            <div className="text-sm text-muted-foreground">{t('skills.toolsCount')}</div>
           </div>
           <div className="glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
             <div className="text-3xl font-bold bg-gradient-to-r from-orange-600 to-yellow-600 bg-clip-text text-transparent mb-2">6+</div>
-            <div className="text-sm text-muted-foreground">Core Concepts</div>
+            <div className="text-sm text-muted-foreground">{t('skills.conceptsCount')}</div>
           </div>
         </div>
       </div>

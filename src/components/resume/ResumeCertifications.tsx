@@ -1,7 +1,10 @@
 
 import { Award } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ResumeCertifications = () => {
+  const { t } = useLanguage();
+  
   const certifications = [
     "Oracle Cloud Infrastructure 2024 Certified Foundations Associate",
     "AWS Certified Cloud Practitioner - Udemy",
@@ -16,7 +19,7 @@ export const ResumeCertifications = () => {
     <div className="glass p-8 rounded-2xl">
       <div className="flex items-center gap-3 mb-6">
         <Award className="w-6 h-6 text-orange-500" />
-        <h3 className="text-2xl font-bold">Certifications</h3>
+        <h3 className="text-2xl font-bold">{t('resume.certifications.title')}</h3>
       </div>
       <div className="space-y-3">
         {certifications.map((certification, index) => (

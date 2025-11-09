@@ -1,9 +1,12 @@
 
 import { Brain, Code, Database, Cloud, Award, User } from "lucide-react";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const AboutSection = () => {
   const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
+  const { t } = useLanguage();
+  
   const skills = [
     { name: "Java", level: 75, color: "bg-orange-500" },
     { name: "Python", level: 95, color: "bg-blue-500" },
@@ -17,11 +20,13 @@ export const AboutSection = () => {
     { name: "Power BI", icon: Brain, color: "text-yellow-600" }
   ];
 
+  const softSkills = t('about.skills').split(',');
+
   return (
     <section id="about" className="py-20 px-6" ref={ref}>
       <div className={`container mx-auto transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 section-heading">
-          About Me
+          {t('about.title')}
         </h2>
 
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -29,26 +34,26 @@ export const AboutSection = () => {
             <div className="glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
               <div className="flex items-center gap-3 mb-4">
                 <User className="w-6 h-6 text-tech-blue" />
-                <h3 className="text-xl font-semibold">Education</h3>
+                <h3 className="text-xl font-semibold">{t('about.education')}</h3>
               </div>
               <p className="text-muted-foreground">
-                Bachelor of Technology in Computer Science and Engineering
+                {t('about.degree')}
                 <br />
-                <span className="text-tech-green font-semibold">SRM Institute of Science and Technology, Chennai</span>
+                <span className="text-tech-green font-semibold">{t('about.university')}</span>
                 <br />
-                CGPA: 8.94 / 10 | May 2025
+                {t('about.cgpa')}
               </p>
             </div>
 
             <div className="glass rounded-xl p-6 hover:scale-105 transition-all duration-300">
               <div className="flex items-center gap-3 mb-4">
                 <Award className="w-6 h-6 text-tech-purple" />
-                <h3 className="text-xl font-semibold">Soft Skills</h3>
+                <h3 className="text-xl font-semibold">{t('about.softSkills')}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                {["Analytical Problem-Solving", "Technical Communication", "Data Interpretation", "Collaboration", "Adaptability to Emerging Tech"].map((skill) => (
-                  <span key={skill} className="px-3 py-1 bg-tech-blue/20 text-tech-blue rounded-full text-sm">
-                    {skill}
+                {softSkills.map((skill, idx) => (
+                  <span key={idx} className="px-3 py-1 bg-tech-blue/20 text-tech-blue rounded-full text-sm">
+                    {skill.trim()}
                   </span>
                 ))}
               </div>
@@ -59,7 +64,7 @@ export const AboutSection = () => {
             <div className="animate-slide-up" style={{ animationDelay: "0.2s" }}>
               <h3 className="text-2xl font-semibold mb-6 flex items-center gap-2">
                 <Code className="w-6 h-6 text-tech-cyan" />
-                Programming Languages
+                {t('about.programmingLanguages')}
               </h3>
               <div className="space-y-4">
                 {skills.map((skill) => (
@@ -80,7 +85,7 @@ export const AboutSection = () => {
             </div>
 
             <div className="animate-slide-up" style={{ animationDelay: "0.4s" }}>
-              <h3 className="text-2xl font-semibold mb-6">Tools & Technologies</h3>
+              <h3 className="text-2xl font-semibold mb-6">{t('about.toolsTech')}</h3>
               <div className="grid grid-cols-3 gap-4">
                 {tools.map((tool) => (
                   <div

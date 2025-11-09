@@ -1,12 +1,15 @@
 
 import { Phone, Mail, Linkedin } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ResumeHeader = () => {
+  const { t } = useLanguage();
+  
   return (
     <div className="text-center glass p-8 rounded-2xl">
       <h1 className="text-3xl font-bold mb-2">Ravula Charan</h1>
-      <p className="text-lg text-muted-foreground mb-2">Roll No.: RA2111003020041</p>
-      <p className="text-base text-muted-foreground mb-6">Bachelor of Technology - SRM University, Ramapuram</p>
+      <p className="text-lg text-muted-foreground mb-2">{t('resume.header.rollNo')} RA2111003020041</p>
+      <p className="text-base text-muted-foreground mb-6">{t('resume.header.degree')}</p>
       
       <div className="flex flex-wrap justify-center gap-4 text-sm">
         <div className="flex items-center gap-2">
