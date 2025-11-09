@@ -325,6 +325,47 @@
   }
 }
 
+/* Language switch animations */
+@keyframes language-fade-in {
+  0% { 
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes language-fade-out {
+  0% { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% { 
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+@keyframes language-slide {
+  0% { 
+    transform: translateX(0);
+  }
+  100% { 
+    transform: translateX(100%);
+  }
+}
+
+/* Language toggle button animations */
+.language-transition-enter {
+  animation: language-fade-in 0.3s ease-out forwards;
+}
+
+.language-transition-exit {
+  animation: language-fade-out 0.2s ease-in forwards;
+}
+
 /* Light theme specific adjustments */
 @media (prefers-color-scheme: light) {
   :root:not(.dark) {

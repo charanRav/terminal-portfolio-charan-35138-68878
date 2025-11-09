@@ -24,6 +24,21 @@ interface LanguageProviderProps {
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
   const [language, setLanguage] = useState<Language>('en');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleLanguageChange = (lang: Language) => {
+    setIsTransitioning(true);
+    
+    // Wait for fade-out animation
+    setTimeout(() => {
+      setLanguage(lang);
+      
+      // Wait for language change, then fade in
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 50);
+    }, 200);
+  };
 
   const t = (key: string): string => {
     const keys = key.split('.');
@@ -41,8 +56,10 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
   };
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
-      {children}
+    <LanguageContext.Provider value={{ language, setLanguage: handleLanguageChange, t }}>
+      <div className={`transition-opacity duration-200 ${isTransitioning ? 'opacity-50' : 'opacity-100'}`}>
+        {children}
+      </div>
     </LanguageContext.Provider>
   );
 };
