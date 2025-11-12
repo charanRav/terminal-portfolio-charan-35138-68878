@@ -1,7 +1,8 @@
-import { Award, ExternalLink, Calendar, X } from "lucide-react";
+import { Award, ExternalLink, Calendar } from "lucide-react";
 import { useState } from "react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { ZoomableImage } from "@/components/ui/zoomable-image";
 import oracleOci from "@/assets/certificates/oracle-oci-2024.png";
 import awsCcp from "@/assets/certificates/aws-cloud-practitioner.png";
 import pythonBootcamp from "@/assets/certificates/python-bootcamp.png";
@@ -241,21 +242,14 @@ export const CertificationsSection = () => {
         </div>
 
         <Dialog open={!!selectedCertificate} onOpenChange={() => setSelectedCertificate(null)}>
-          <DialogContent className="max-w-[95vw] md:max-w-4xl p-0 border-0 bg-transparent shadow-none">
-            <div className="relative w-full flex items-center justify-center bg-background/95 backdrop-blur-sm rounded-lg border border-primary/20 p-2 md:p-4">
-              {selectedCertificate && (
-                <img 
-                  src={selectedCertificate} 
-                  alt="Certificate"
-                  className="w-full h-auto max-h-[70vh] md:max-h-[80vh] object-contain rounded-lg"
-                  loading="eager"
-                  onError={(e) => {
-                    console.error('Certificate image failed to load');
-                    e.currentTarget.style.display = 'none';
-                  }}
-                />
-              )}
-            </div>
+          <DialogContent className="max-w-[95vw] md:max-w-6xl h-[90vh] p-4 border border-primary/20">
+            {selectedCertificate && (
+              <ZoomableImage
+                src={selectedCertificate}
+                alt="Certificate"
+                className="w-full h-full rounded-lg"
+              />
+            )}
           </DialogContent>
         </Dialog>
       </div>

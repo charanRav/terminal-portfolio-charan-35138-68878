@@ -1,8 +1,7 @@
-
 import { BookOpen, Calendar, Award, Eye } from "lucide-react";
-import { useState } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
+import { ZoomableImage } from "@/components/ui/zoomable-image";
 
 export const PublicationsSection = () => {
   const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
@@ -114,16 +113,12 @@ export const PublicationsSection = () => {
                         View Certificate
                       </button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-4xl max-h-[90vh] p-2">
-                      <div className="relative w-full h-full flex items-center justify-center">
-                        <img 
-                          src={pub.certificate} 
-                          alt={`Certificate for ${pub.title}`}
-                          className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
-                          style={{ maxHeight: '80vh' }}
-                          loading="lazy"
-                        />
-                      </div>
+                    <DialogContent className="max-w-[95vw] md:max-w-6xl h-[90vh] p-4 border border-primary/20">
+                      <ZoomableImage
+                        src={pub.certificate}
+                        alt={`Certificate for ${pub.title}`}
+                        className="w-full h-full rounded-lg"
+                      />
                     </DialogContent>
                   </Dialog>
                 </div>
