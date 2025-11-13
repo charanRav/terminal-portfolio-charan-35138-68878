@@ -1,8 +1,10 @@
 import { ExternalLink, Lock, Video, Brain } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const AIProjectsUpdated = () => {
+  const { t } = useLanguage();
   const aiProjects = [
     {
       title: "MediFinder – AI-Assisted Medicine Locator",
@@ -33,10 +35,10 @@ export const AIProjectsUpdated = () => {
       <div className="container mx-auto max-w-7xl">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent mb-4">
-            AI-Powered Projects
+            {t('aiProjects.title')}
           </h2>
           <p className="text-lg text-muted-foreground">
-            Projects integrated with cutting-edge AI tools and technologies
+            {t('aiProjects.subtitle')}
           </p>
         </div>
 
@@ -65,7 +67,7 @@ export const AIProjectsUpdated = () => {
                   {project.status === "private" && (
                     <div className="absolute top-4 right-4 flex items-center gap-2 px-3 py-1 bg-yellow-500/20 backdrop-blur-sm rounded-full border border-yellow-500/30">
                       <Lock className="w-3 h-3 text-yellow-600" />
-                      <span className="text-xs font-medium text-yellow-600">Private</span>
+                      <span className="text-xs font-medium text-yellow-600">{t('aiProjects.private')}</span>
                     </div>
                   )}
                 </div>
@@ -98,7 +100,7 @@ export const AIProjectsUpdated = () => {
                     className="flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors font-medium"
                   >
                     <ExternalLink className="w-4 h-4" />
-                    View Live Project
+                    {t('aiProjects.viewLiveProject')}
                   </a>
                 )}
               </CardContent>

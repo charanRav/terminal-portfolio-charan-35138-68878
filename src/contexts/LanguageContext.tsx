@@ -166,6 +166,38 @@ const translations = {
       publicationsCount: 'Publications',
       researchActive: 'Research Active'
     },
+    aiProjects: {
+      title: 'AI-Powered Projects',
+      subtitle: 'Projects integrated with cutting-edge AI tools and technologies',
+      viewLiveProject: 'View Live Project',
+      private: 'Private'
+    },
+    liveWebsites: {
+      title: 'Production Websites',
+      subtitle: 'Real-world applications built by Ravula Charan, currently live and serving users worldwide',
+      liveRunning: 'Live & Running',
+      category: 'Category',
+      keyFeatures: 'Key Features:',
+      viewWebsite: 'View Live Website',
+      liveActive: 'Live & Active',
+      activeNote: '✨ These applications are actively maintained and continuously improved'
+    },
+    gamezone: {
+      title: 'GameZone',
+      subtitle: "I've played {count}+ games across all genres — PC & Mobile",
+      gamesCount: '100',
+      philosophy: 'Gaming Philosophy',
+      philosophyText: 'Gaming is my passion and part of my {mindset}. Every game teaches strategic thinking, quick decision-making, and creative problem-solving — skills that directly enhance my approach to coding and AI development.',
+      mindset: 'problem-solving mindset',
+      genres: {
+        fps: 'FPS',
+        strategy: 'Strategy',
+        adventure: 'Adventure',
+        moba: 'MOBA',
+        action: 'Action',
+        rpg: 'RPG'
+      }
+    },
     contact: {
       title: 'Get In Touch',
       subtitle: "I'm always interested in discussing new opportunities, innovative projects, or just having a conversation about AI, technology, and problem-solving.",
@@ -330,6 +362,38 @@ const translations = {
       viewCertificate: 'Zertifikat ansehen',
       publicationsCount: 'Veröffentlichungen',
       researchActive: 'Forschung aktiv'
+    },
+    aiProjects: {
+      title: 'KI-gestützte Projekte',
+      subtitle: 'Projekte, die mit modernsten KI-Tools und -Technologien integriert sind',
+      viewLiveProject: 'Live-Projekt ansehen',
+      private: 'Privat'
+    },
+    liveWebsites: {
+      title: 'Produktions-Websites',
+      subtitle: 'Reale Anwendungen von Ravula Charan, die derzeit live sind und Benutzer weltweit bedienen',
+      liveRunning: 'Live & Aktiv',
+      category: 'Kategorie',
+      keyFeatures: 'Hauptmerkmale:',
+      viewWebsite: 'Live-Website ansehen',
+      liveActive: 'Live & Aktiv',
+      activeNote: '✨ Diese Anwendungen werden aktiv gewartet und kontinuierlich verbessert'
+    },
+    gamezone: {
+      title: 'Spielzone',
+      subtitle: 'Ich habe {count}+ Spiele in allen Genres gespielt — PC & Mobil',
+      gamesCount: '100',
+      philosophy: 'Gaming-Philosophie',
+      philosophyText: 'Gaming ist meine Leidenschaft und Teil meiner {mindset}. Jedes Spiel lehrt strategisches Denken, schnelle Entscheidungsfindung und kreatives Problemlösen — Fähigkeiten, die direkt meinen Ansatz beim Programmieren und der KI-Entwicklung verbessern.',
+      mindset: 'Problemlösungs-Denkweise',
+      genres: {
+        fps: 'FPS',
+        strategy: 'Strategie',
+        adventure: 'Abenteuer',
+        moba: 'MOBA',
+        action: 'Action',
+        rpg: 'RPG'
+      }
     },
     contact: {
       title: 'Kontakt aufnehmen',

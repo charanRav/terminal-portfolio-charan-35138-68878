@@ -1,14 +1,16 @@
 
 import { Gamepad2, Target, Zap, Sword, Trophy, Brain, Joystick } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const GameZoneSection = () => {
+  const { t } = useLanguage();
   const gameGenres = [
-    { name: "FPS", icon: Target, color: "text-red-500" },
-    { name: "Strategy", icon: Brain, color: "text-blue-500" },
-    { name: "Adventure", icon: Sword, color: "text-green-500" },
-    { name: "MOBA", icon: Trophy, color: "text-purple-500" },
-    { name: "Action", icon: Zap, color: "text-yellow-500" },
-    { name: "RPG", icon: Gamepad2, color: "text-pink-500" }
+    { name: t('gamezone.genres.fps'), icon: Target, color: "text-red-500" },
+    { name: t('gamezone.genres.strategy'), icon: Brain, color: "text-blue-500" },
+    { name: t('gamezone.genres.adventure'), icon: Sword, color: "text-green-500" },
+    { name: t('gamezone.genres.moba'), icon: Trophy, color: "text-purple-500" },
+    { name: t('gamezone.genres.action'), icon: Zap, color: "text-yellow-500" },
+    { name: t('gamezone.genres.rpg'), icon: Gamepad2, color: "text-pink-500" }
   ];
 
   return (
@@ -39,11 +41,11 @@ export const GameZoneSection = () => {
         <div className="mb-8 animate-slide-up">
           <h2 className="text-4xl md:text-5xl mb-4 flex items-center justify-center gap-3 font-bold text-foreground">
             <Gamepad2 className="w-12 h-12 text-cyan-500 animate-noodle" />
-            GameZone
+            {t('gamezone.title')}
             <Joystick className="w-10 h-10 text-purple-500 animate-joystick-wiggle" />
           </h2>
           <p className="text-xl text-muted-foreground mb-8">
-            I've played <span className="text-green-500 font-bold">100+ games</span> across all genres — PC & Mobile
+            {t('gamezone.subtitle').replace('{count}', t('gamezone.gamesCount'))}
           </p>
         </div>
 
@@ -63,14 +65,17 @@ export const GameZoneSection = () => {
         <div className="glass rounded-xl p-8 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: "0.6s" }}>
           <h3 className="text-2xl font-semibold mb-4 flex items-center justify-center gap-2 text-foreground">
             <Brain className="w-6 h-6 text-purple-500" />
-            Gaming Philosophy
+            {t('gamezone.philosophy')}
           </h3>
           <p className="text-lg text-muted-foreground">
-            Gaming is my passion and part of my <span className="text-cyan-500 font-semibold">problem-solving mindset</span>.
-            <br />
-            Every game teaches strategic thinking, quick decision-making, and creative problem-solving —
-            <br />
-            skills that directly enhance my approach to coding and AI development.
+            {t('gamezone.philosophyText')
+              .split('{mindset}')
+              .map((part, i, arr) => (
+                <span key={i}>
+                  {part}
+                  {i < arr.length - 1 && <span className="text-cyan-500 font-semibold">{t('gamezone.mindset')}</span>}
+                </span>
+              ))}
           </p>
         </div>
       </div>

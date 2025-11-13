@@ -1,8 +1,10 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Globe } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const LiveWebsitesSection = () => {
+  const { t } = useLanguage();
   const websites = [
     {
       id: 1,
@@ -33,15 +35,15 @@ const LiveWebsitesSection = () => {
             <div className="flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
               <Globe className="w-5 h-5 text-primary" />
               <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-                Live & Running
+                {t('liveWebsites.liveRunning')}
               </span>
             </div>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary via-purple-500 to-pink-500 bg-clip-text text-transparent">
-            Production Websites
+            {t('liveWebsites.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Real-world applications built by Ravula Charan, currently live and serving users worldwide
+            {t('liveWebsites.subtitle')}
           </p>
         </div>
 
@@ -76,7 +78,7 @@ const LiveWebsitesSection = () => {
 
                 {/* Features */}
                 <div className="mb-6 space-y-2">
-                  <p className="text-sm font-semibold text-foreground mb-3">Key Features:</p>
+                  <p className="text-sm font-semibold text-foreground mb-3">{t('liveWebsites.keyFeatures')}</p>
                   <div className="grid grid-cols-2 gap-2">
                     {website.features.map((feature, idx) => (
                       <div 
@@ -97,14 +99,14 @@ const LiveWebsitesSection = () => {
                   onClick={() => window.open(website.url, '_blank')}
                 >
                   <Globe className="w-4 h-4 mr-2 group-hover/btn:rotate-12 transition-transform" />
-                  View Live Website
+                  {t('liveWebsites.viewWebsite')}
                   <ExternalLink className="w-4 h-4 ml-2 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform" />
                 </Button>
 
                 {/* Status Indicator */}
                 <div className="mt-4 flex items-center justify-center gap-2 text-xs text-muted-foreground">
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  <span>Live & Active</span>
+                  <span>{t('liveWebsites.liveActive')}</span>
                 </div>
               </CardContent>
             </Card>
@@ -114,7 +116,7 @@ const LiveWebsitesSection = () => {
         {/* Bottom Note */}
         <div className="mt-12 text-center">
           <p className="text-sm text-muted-foreground">
-            ✨ These applications are actively maintained and continuously improved
+            {t('liveWebsites.activeNote')}
           </p>
         </div>
       </div>
