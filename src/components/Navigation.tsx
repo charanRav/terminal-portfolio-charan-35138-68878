@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
-import { LanguageToggle } from "./LanguageToggle";
+import { LanguageSelector } from "./LanguageSelector";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -75,13 +75,13 @@ export const Navigation = () => {
 
           {/* Desktop Controls */}
           <div className="hidden md:flex items-center gap-3">
-            <LanguageToggle />
+            <LanguageSelector />
             <ThemeToggle />
           </div>
 
           {/* Mobile Navigation - Fixed spacing */}
           <div className="md:hidden flex items-center gap-2">
-            <LanguageToggle />
+            <LanguageSelector />
             <ThemeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}

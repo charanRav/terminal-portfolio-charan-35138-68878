@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-type Language = 'en' | 'de';
+type Language = 'en' | 'de' | 'es' | 'fr';
 
 interface LanguageContextType {
   language: Language;
@@ -456,6 +456,400 @@ const translations = {
       },
       certifications: {
         title: 'Zertifizierungen'
+      }
+    },
+    es: {
+      nav: {
+        home: 'Inicio',
+        about: 'Sobre mí',
+        skills: 'Habilidades',
+        projects: 'Proyectos',
+        certifications: 'Certificaciones',
+        roadmap: 'Hoja de ruta',
+        publications: 'Publicaciones',
+        gamezone: 'Zona de juegos',
+        contact: 'Contacto',
+        resume: 'Currículum'
+      },
+      hero: {
+        aspiring: 'Aspirante a',
+        roles: {
+          software: 'Ingeniero de Software',
+          ai: 'Desarrollador de IA y Cloud',
+          data: 'Analista de Datos',
+          tech: 'Entusiasta de Tecnologías Emergentes'
+        },
+        description: 'Graduado en Ingeniería Informática de',
+        university: 'Instituto de Ciencia y Tecnología SRM',
+        cgpa: 'CGPA: 8.94 / 10 | Graduado Mayo 2025',
+        interests: 'IA • Cloud Computing • Análisis de Datos • Sistemas Inteligentes',
+        viewResume: 'Ver currículum',
+        viewCoverLetter: 'Ver carta de presentación',
+        viewProjects: 'Ver proyectos',
+        resumeTitle: 'Currículum - Ravula Charan',
+        coverLetterTitle: 'Carta de presentación - Ravula Charan'
+      },
+      about: {
+        title: 'Sobre mí',
+        education: 'Educación',
+        degree: 'Licenciatura en Tecnología en Ciencias de la Computación e Ingeniería',
+        university: 'Instituto de Ciencia y Tecnología SRM, Chennai',
+        cgpa: 'CGPA: 8.94 / 10 | Mayo 2025',
+        softSkills: 'Habilidades Blandas',
+        skills: ['Resolución Analítica de Problemas', 'Comunicación Técnica', 'Interpretación de Datos', 'Colaboración', 'Adaptabilidad a Tecnologías Emergentes'],
+        programmingLanguages: 'Lenguajes de Programación',
+        toolsTech: 'Herramientas y Tecnologías'
+      },
+      skills: {
+        title: 'Habilidades Técnicas',
+        subtitle: 'Competencias en lenguajes de programación, frameworks y plataformas cloud',
+        languages: 'Lenguajes',
+        frameworks: 'Frameworks y Bibliotecas',
+        tools: 'Herramientas y Plataformas',
+        concepts: 'Conceptos Básicos',
+        languagesCount: 'Lenguajes',
+        librariesCount: 'Bibliotecas',
+        toolsCount: 'Herramientas',
+        conceptsCount: 'Conceptos Básicos'
+      },
+      projects: {
+        title: 'Proyectos Personales',
+        subtitle: 'Proyectos de IA/ML y ciberseguridad con resultados probados y alta precisión',
+        searchPlaceholder: 'Buscar proyectos...',
+        allCategories: 'Todas las categorías',
+        status: 'Estado',
+        impact: 'Impacto:',
+        team: 'Equipo',
+        duration: 'Duración',
+        noProjects: 'No se encontraron proyectos',
+        noProjectsDesc: 'Intente ajustar sus criterios de búsqueda o filtro',
+        clearFilters: 'Limpiar filtros',
+        completed: 'Completado',
+        inProgress: 'En progreso',
+        individualProject: 'Proyecto Individual'
+      },
+      certifications: {
+        title: 'Certificaciones',
+        subtitle: 'Certificaciones profesionales en Python, AWS, IA, Machine Learning y Análisis de Datos',
+        skillsCovered: 'Habilidades cubiertas:',
+        viewCertificate: 'Ver certificado',
+        status: 'Estado',
+        completed: 'Completado',
+        inProgress: 'En progreso',
+        planned: 'Planificado'
+      },
+      roadmap: {
+        title: 'Hoja de Ruta Profesional',
+        subtitle: 'Viaje desde pasantías de IA hasta la graduación con publicaciones de investigación',
+        internship: 'pasantía',
+        achievement: 'logro',
+        project: 'proyecto',
+        milestone: 'hito',
+        learning: 'aprendizaje',
+        internships: 'Pasantías',
+        publications: 'Publicaciones',
+        certifications: 'Certificaciones',
+        cgpa: 'CGPA'
+      },
+      publications: {
+        title: 'Publicaciones e Investigación',
+        subtitle: 'Contribuyendo a la investigación en IA, ciberseguridad y visión por computadora a través de publicaciones revisadas por pares',
+        published: 'Publicado',
+        viewCertificate: 'Ver certificado',
+        publicationsCount: 'Publicaciones',
+        researchActive: 'Investigación activa'
+      },
+      aiProjects: {
+        title: 'Proyectos con IA',
+        subtitle: 'Proyectos integrados con herramientas y tecnologías de IA de vanguardia',
+        viewLiveProject: 'Ver proyecto en vivo',
+        private: 'Privado'
+      },
+      liveWebsites: {
+        title: 'Sitios Web en Producción',
+        subtitle: 'Aplicaciones del mundo real creadas por Ravula Charan, actualmente en vivo y sirviendo a usuarios en todo el mundo',
+        liveRunning: 'En vivo y activo',
+        category: 'Categoría',
+        keyFeatures: 'Características clave:',
+        viewWebsite: 'Ver sitio web en vivo',
+        liveActive: 'En vivo y activo',
+        activeNote: '✨ Estas aplicaciones se mantienen activamente y se mejoran continuamente'
+      },
+      gamezone: {
+        title: 'Zona de Juegos',
+        subtitle: 'He jugado {count}+ juegos en todos los géneros — PC y móvil',
+        gamesCount: '100',
+        philosophy: 'Filosofía de juego',
+        philosophyText: 'Los juegos son mi pasión y parte de mi {mindset}. Cada juego enseña pensamiento estratégico, toma rápida de decisiones y resolución creativa de problemas — habilidades que mejoran directamente mi enfoque en programación y desarrollo de IA.',
+        mindset: 'mentalidad de resolución de problemas',
+        genres: {
+          fps: 'FPS',
+          strategy: 'Estrategia',
+          adventure: 'Aventura',
+          moba: 'MOBA',
+          action: 'Acción',
+          rpg: 'RPG'
+        }
+      },
+      contact: {
+        title: 'Ponerse en contacto',
+        subtitle: 'Siempre estoy interesado en discutir nuevas oportunidades, proyectos innovadores o simplemente conversar sobre IA, tecnología y resolución de problemas.',
+        connect: 'Conectemos',
+        email: 'Correo electrónico',
+        linkedin: 'LinkedIn',
+        linkedinText: 'Conéctate conmigo',
+        name: 'Nombre',
+        namePlaceholder: 'Tu nombre',
+        emailLabel: 'Correo electrónico',
+        emailPlaceholder: 'tu.correo@ejemplo.com',
+        message: 'Mensaje',
+        messagePlaceholder: 'Tu mensaje...',
+        send: 'Enviar mensaje',
+        sending: 'Enviando...',
+        errorTitle: 'Error',
+        errorAllFields: 'Por favor complete todos los campos',
+        errorInvalidEmail: 'Por favor ingrese una dirección de correo electrónico válida',
+        errorSendFailed: 'No se pudo enviar el mensaje. Por favor intente nuevamente o contácteme directamente.',
+        successTitle: '¡Mensaje enviado!',
+        successDesc: '¡Gracias por tu mensaje. Me pondré en contacto contigo pronto!',
+        emailClientOpening: 'Abriendo cliente de correo',
+        emailClientOpeningDesc: 'Tu cliente de correo predeterminado debería abrirse ahora. Si no, envía un correo directamente a ravulacharan7@gmail.com.',
+        emailCopied: 'Correo copiado',
+        emailCopiedDesc: 'Dirección de correo copiada al portapapeles: ravulacharan7@gmail.com'
+      },
+      resume: {
+        title: 'Currículum',
+        subtitle: 'Visión general completa de mi trayectoria académica y profesional',
+        header: {
+          rollNo: 'Número de matrícula:',
+          degree: 'Licenciatura en Tecnología - Universidad SRM, Ramapuram'
+        },
+        education: {
+          title: 'Educación',
+          degree: 'Licenciatura en Tecnología en Ciencias de la Computación e Ingeniería',
+          university: 'Universidad SRM, Ramapuram',
+          duration: 'Sep 2021 - Mayo 2025',
+          cgpa: 'CGPA 8.95'
+        },
+        projects: {
+          title: 'Proyectos de equipo',
+          team: 'Equipo'
+        },
+        experience: {
+          title: 'Experiencia'
+        },
+        skills: {
+          title: 'Habilidades Técnicas e Intereses',
+          languages: 'Lenguajes:',
+          webDevTools: 'Herramientas de desarrollo web:',
+          database: 'Base de datos:',
+          toolsPlatforms: 'Herramientas/Plataformas:',
+          relevantCoursework: 'Cursos relevantes:',
+          areasOfInterest: 'Áreas de interés:'
+        },
+        publications: {
+          title: 'Publicaciones y conferencias'
+        },
+        certifications: {
+          title: 'Certificaciones'
+        }
+      }
+    },
+    fr: {
+      nav: {
+        home: 'Accueil',
+        about: 'À propos',
+        skills: 'Compétences',
+        projects: 'Projets',
+        certifications: 'Certifications',
+        roadmap: 'Feuille de route',
+        publications: 'Publications',
+        gamezone: 'Zone de jeu',
+        contact: 'Contact',
+        resume: 'CV'
+      },
+      hero: {
+        aspiring: 'Aspirant',
+        roles: {
+          software: 'Ingénieur logiciel',
+          ai: 'Développeur IA et Cloud',
+          data: 'Analyste de données',
+          tech: 'Passionné de technologies émergentes'
+        },
+        description: 'Diplômé en informatique de',
+        university: 'Institut des sciences et technologies SRM',
+        cgpa: 'CGPA: 8.94 / 10 | Diplômé en mai 2025',
+        interests: 'IA • Cloud Computing • Analyse de données • Systèmes intelligents',
+        viewResume: 'Voir le CV',
+        viewCoverLetter: 'Voir la lettre de motivation',
+        viewProjects: 'Voir les projets',
+        resumeTitle: 'CV - Ravula Charan',
+        coverLetterTitle: 'Lettre de motivation - Ravula Charan'
+      },
+      about: {
+        title: 'À propos de moi',
+        education: 'Éducation',
+        degree: 'Licence en technologie en informatique et ingénierie',
+        university: 'Institut des sciences et technologies SRM, Chennai',
+        cgpa: 'CGPA: 8.94 / 10 | Mai 2025',
+        softSkills: 'Compétences interpersonnelles',
+        skills: ['Résolution analytique de problèmes', 'Communication technique', 'Interprétation des données', 'Collaboration', 'Adaptabilité aux technologies émergentes'],
+        programmingLanguages: 'Langages de programmation',
+        toolsTech: 'Outils et technologies'
+      },
+      skills: {
+        title: 'Compétences techniques',
+        subtitle: 'Compétences en langages de programmation, frameworks et plateformes cloud',
+        languages: 'Langages',
+        frameworks: 'Frameworks et bibliothèques',
+        tools: 'Outils et plateformes',
+        concepts: 'Concepts de base',
+        languagesCount: 'Langages',
+        librariesCount: 'Bibliothèques',
+        toolsCount: 'Outils',
+        conceptsCount: 'Concepts de base'
+      },
+      projects: {
+        title: 'Projets personnels',
+        subtitle: 'Projets IA/ML et cybersécurité avec des résultats prouvés et une grande précision',
+        searchPlaceholder: 'Rechercher des projets...',
+        allCategories: 'Toutes les catégories',
+        status: 'Statut',
+        impact: 'Impact:',
+        team: 'Équipe',
+        duration: 'Durée',
+        noProjects: 'Aucun projet trouvé',
+        noProjectsDesc: 'Essayez d\'ajuster vos critères de recherche ou de filtre',
+        clearFilters: 'Effacer les filtres',
+        completed: 'Terminé',
+        inProgress: 'En cours',
+        individualProject: 'Projet individuel'
+      },
+      certifications: {
+        title: 'Certifications',
+        subtitle: 'Certifications professionnelles en Python, AWS, IA, apprentissage automatique et analyse de données',
+        skillsCovered: 'Compétences couvertes:',
+        viewCertificate: 'Voir le certificat',
+        status: 'Statut',
+        completed: 'Terminé',
+        inProgress: 'En cours',
+        planned: 'Planifié'
+      },
+      roadmap: {
+        title: 'Feuille de route de carrière',
+        subtitle: 'Parcours des stages en IA à la diplomation avec des publications de recherche',
+        internship: 'stage',
+        achievement: 'réalisation',
+        project: 'projet',
+        milestone: 'jalon',
+        learning: 'apprentissage',
+        internships: 'Stages',
+        publications: 'Publications',
+        certifications: 'Certifications',
+        cgpa: 'CGPA'
+      },
+      publications: {
+        title: 'Publications et recherche',
+        subtitle: 'Contribution à la recherche en IA, cybersécurité et vision par ordinateur à travers des publications évaluées par des pairs',
+        published: 'Publié',
+        viewCertificate: 'Voir le certificat',
+        publicationsCount: 'Publications',
+        researchActive: 'Recherche active'
+      },
+      aiProjects: {
+        title: 'Projets alimentés par l\'IA',
+        subtitle: 'Projets intégrés avec des outils et technologies d\'IA de pointe',
+        viewLiveProject: 'Voir le projet en direct',
+        private: 'Privé'
+      },
+      liveWebsites: {
+        title: 'Sites Web en production',
+        subtitle: 'Applications réelles créées par Ravula Charan, actuellement en ligne et servant des utilisateurs du monde entier',
+        liveRunning: 'En ligne et actif',
+        category: 'Catégorie',
+        keyFeatures: 'Caractéristiques principales:',
+        viewWebsite: 'Voir le site en direct',
+        liveActive: 'En ligne et actif',
+        activeNote: '✨ Ces applications sont activement maintenues et continuellement améliorées'
+      },
+      gamezone: {
+        title: 'Zone de jeu',
+        subtitle: 'J\'ai joué à {count}+ jeux dans tous les genres — PC et mobile',
+        gamesCount: '100',
+        philosophy: 'Philosophie du jeu',
+        philosophyText: 'Le jeu est ma passion et fait partie de mon {mindset}. Chaque jeu enseigne la pensée stratégique, la prise de décision rapide et la résolution créative de problèmes — des compétences qui améliorent directement mon approche du codage et du développement de l\'IA.',
+        mindset: 'état d\'esprit de résolution de problèmes',
+        genres: {
+          fps: 'FPS',
+          strategy: 'Stratégie',
+          adventure: 'Aventure',
+          moba: 'MOBA',
+          action: 'Action',
+          rpg: 'RPG'
+        }
+      },
+      contact: {
+        title: 'Entrer en contact',
+        subtitle: 'Je suis toujours intéressé par la discussion de nouvelles opportunités, de projets innovants ou simplement de conversations sur l\'IA, la technologie et la résolution de problèmes.',
+        connect: 'Connectons-nous',
+        email: 'Email',
+        linkedin: 'LinkedIn',
+        linkedinText: 'Connectez-vous avec moi',
+        name: 'Nom',
+        namePlaceholder: 'Votre nom',
+        emailLabel: 'Email',
+        emailPlaceholder: 'votre.email@exemple.fr',
+        message: 'Message',
+        messagePlaceholder: 'Votre message...',
+        send: 'Envoyer le message',
+        sending: 'Envoi...',
+        errorTitle: 'Erreur',
+        errorAllFields: 'Veuillez remplir tous les champs',
+        errorInvalidEmail: 'Veuillez entrer une adresse email valide',
+        errorSendFailed: 'Échec de l\'envoi du message. Veuillez réessayer ou me contacter directement.',
+        successTitle: 'Message envoyé!',
+        successDesc: 'Merci pour votre message. Je vous répondrai bientôt!',
+        emailClientOpening: 'Ouverture du client email',
+        emailClientOpeningDesc: 'Votre client email par défaut devrait s\'ouvrir maintenant. Sinon, envoyez un email directement à ravulacharan7@gmail.com.',
+        emailCopied: 'Email copié',
+        emailCopiedDesc: 'Adresse email copiée dans le presse-papiers: ravulacharan7@gmail.com'
+      },
+      resume: {
+        title: 'CV',
+        subtitle: 'Aperçu complet de mon parcours académique et professionnel',
+        header: {
+          rollNo: 'Numéro d\'inscription:',
+          degree: 'Licence en technologie - Université SRM, Ramapuram'
+        },
+        education: {
+          title: 'Éducation',
+          degree: 'Licence en technologie en informatique et ingénierie',
+          university: 'Université SRM, Ramapuram',
+          duration: 'Sep 2021 - Mai 2025',
+          cgpa: 'CGPA 8.95'
+        },
+        projects: {
+          title: 'Projets d\'équipe',
+          team: 'Équipe'
+        },
+        experience: {
+          title: 'Expérience'
+        },
+        skills: {
+          title: 'Compétences techniques et intérêts',
+          languages: 'Langages:',
+          webDevTools: 'Outils de développement web:',
+          database: 'Base de données:',
+          toolsPlatforms: 'Outils/Plateformes:',
+          relevantCoursework: 'Cours pertinents:',
+          areasOfInterest: 'Domaines d\'intérêt:'
+        },
+        publications: {
+          title: 'Publications et conférences'
+        },
+        certifications: {
+          title: 'Certifications'
+        }
       }
     }
   }
