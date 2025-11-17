@@ -2,33 +2,35 @@ import { BookOpen, Calendar, Award, Eye } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { useIntersectionObserver } from "@/hooks/use-intersection-observer";
 import { ZoomableImage } from "@/components/ui/zoomable-image";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const PublicationsSection = () => {
   const { ref, isInView } = useIntersectionObserver({ threshold: 0.1 });
+  const { t } = useLanguage();
   const publications = [
     {
-      title: "Proactive Malware Detection to Secure Web Data Using Random Forest Algorithm",
-      journal: "National Conference on Climate Change, MSIT Delhi",
+      title: t('publications.pub1Title'),
+      journal: t('publications.pub1Journal'),
       year: "Nov 2024",
-      description: "Presented research on malware detection achieving high accuracy using Random Forest algorithm for enhanced web security",
+      description: t('publications.pub1Desc'),
       color: "text-blue-500",
       gradient: "from-blue-500 to-cyan-500",
       certificate: "/lovable-uploads/43f6f0f9-ece0-4ea4-b7ab-562d32221c5b.png"
     },
     {
-      title: "AI Enhancement Automated Movement Detection",
-      journal: "IJFMR, Vol 6 Issue 2",
+      title: t('publications.pub2Title'),
+      journal: t('publications.pub2Journal'),
       year: "March-April 2024",
-      description: "Research on real-time object tracking using neural networks for automated movement detection in surveillance systems",
+      description: t('publications.pub2Desc'),
       color: "text-purple-500",
       gradient: "from-purple-500 to-pink-500",
       certificate: "/lovable-uploads/9caa6109-f6f9-419b-a78a-c713f0712a1d.png"
     },
     {
-      title: "Insider Security Risk Using Graph Analysis",
-      journal: "IJCRT, Vol 12 Issue 7",
+      title: t('publications.pub3Title'),
+      journal: t('publications.pub3Journal'),
       year: "July 2024",
-      description: "Graph-theory-based approach for detecting internal security threats and analyzing insider risk patterns",
+      description: t('publications.pub3Desc'),
       color: "text-green-500",
       gradient: "from-green-500 to-emerald-500",
       certificate: "/lovable-uploads/edfcb901-8717-4d20-9c1e-0cb7ae820b09.png"
@@ -56,10 +58,10 @@ export const PublicationsSection = () => {
       <div className={`container mx-auto relative z-10 transition-all duration-700 ${isInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="text-center mb-16 space-y-4">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-blue-600 via-purple-600 to-green-600 bg-clip-text text-transparent">
-            Publications & Research
+            {t('publications.title')}
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Contributing to AI, cybersecurity, and computer vision research through peer-reviewed publications
+            {t('publications.subtitle')}
           </p>
           <div className="flex justify-center">
             <Award className="w-8 h-8 text-yellow-500 animate-bounce" />
